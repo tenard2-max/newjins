@@ -7,3 +7,4 @@ data/uploads/
 data/ledger.json
 data/active_files.json
 bin/
+.run/

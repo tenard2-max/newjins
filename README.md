@@ -61,6 +61,25 @@ chmod +x scripts/start_android_termux.sh
 - 안드로이드 배터리 최적화에서 Termux를 예외로 설정
 - 화면이 꺼져도 유지하려면 `termux-wake-lock` 권장(가능한 환경에서 자동 호출됨)
 
+### 6) 원클릭 위젯(홈 화면 버튼) 만들기
+
+Termux:Widget 앱 설치 후 아래를 1회 실행하세요.
+
+```bash
+chmod +x scripts/android/install_termux_widget_shortcuts.sh
+./scripts/android/install_termux_widget_shortcuts.sh
+```
+
+그 다음:
+
+1. 안드로이드 홈 화면 길게 누름 → 위젯 추가
+2. **Termux:Widget** 위젯 배치
+3. 위젯 목록에서:
+   - `01_start_story_navigator.sh` (원클릭 시작)
+   - `02_stop_story_navigator.sh` (원클릭 중지)
+
+시작 버튼을 누르면 브라우저가 자동으로 `http://127.0.0.1:8501` 을 엽니다.
+
 ## 상시 접속(로컬 서버) 권장 방법
 
 터널 주소(trycloudflare, loca.lt)는 시간이 지나면 바뀌거나 끊길 수 있습니다.  
