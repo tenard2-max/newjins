@@ -29,6 +29,26 @@ streamlit run app.py
   - `data/` 쓰기 권한 보정
   - Streamlit 서버(8501) 자동 실행
 
+## 핸드폰 바로가기(PWA) 사용법
+
+`mobile-shortcut/` 폴더에 모바일 홈 화면 바로가기용 페이지를 추가했습니다.
+
+- `mobile-shortcut/index.html`
+- `mobile-shortcut/manifest.webmanifest`
+- `mobile-shortcut/sw.js`
+- `mobile-shortcut/icon.svg`
+
+사용 순서:
+
+1. `mobile-shortcut/index.html` 페이지를 휴대폰에서 연다.
+2. Streamlit 앱 주소를 입력하고 **주소 저장**을 누른다.
+3. 브라우저 메뉴에서 **홈 화면에 추가**를 선택한다.
+4. 생성된 아이콘을 누르면 저장된 앱 주소가 바로 열린다.
+
+팁:
+- 최초 접속 URL에 `?url=https://YOUR-APP-URL`을 붙이면 주소가 자동 입력됩니다.
+  - 예: `https://<도메인>/mobile-shortcut/index.html?url=https://<streamlit-url>`
+
 ## 데이터 저장 위치
 
 - 기본 시드 문서: `data/seed/`
