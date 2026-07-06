@@ -19,6 +19,33 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+## 상시 접속(로컬 서버) 권장 방법
+
+터널 주소(trycloudflare, loca.lt)는 시간이 지나면 바뀌거나 끊길 수 있습니다.  
+안정적으로 쓰려면 같은 Wi-Fi에서 접근 가능한 **로컬 고정 주소**를 사용하세요.
+
+### 방법 A) 일반 실행 (포그라운드)
+
+```bash
+./scripts/start_local_server.sh
+```
+
+- 실행 후 콘솔에 `http://<내PC_IP>:8501` 주소가 표시됩니다.
+- 안드로이드에서 같은 Wi-Fi 연결 상태로 위 주소 접속 후 홈 화면 바로가기를 만드세요.
+
+### 방법 B) 상시 실행 (Docker, 백그라운드)
+
+```bash
+./scripts/start_local_server_daemon.sh
+```
+
+- Docker 컨테이너로 백그라운드 실행됩니다.
+- `docker`의 restart 정책(`unless-stopped`)으로 재시작에 강합니다.
+- 중지:
+  ```bash
+  docker compose down
+  ```
+
 ## Cursor Cloud Agent 환경 설정
 
 - 기본 이미지/시작 스크립트 설정 파일: `.cursor/environment.json`
