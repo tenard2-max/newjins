@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -547,6 +548,32 @@ def calculate_balance_eok(ledger_rows: list[dict[str, Any]]) -> float:
     return round(balance, 2)
 
 
+def prevent_browser_auto_translation() -> None:
+    """브라우저(크롬 모바일 등) 자동 번역이 한국어 UI 문구를 엉뚱한 단어로 바꾸는 것을 방지한다.
+
+    Streamlit 기본 페이지는 lang="en"으로 렌더링되어, 브라우저가 페이지를
+    영어로 오인하고 한국어로 "재번역"하면서 라벨이 훼손되는 문제가 있다.
+    (예: "스토리 파일" -> "업무 파일"/"스포츠 파일")
+    """
+    components.html(
+        """
+        <script>
+        const doc = window.parent.document;
+        doc.documentElement.setAttribute("lang", "ko");
+        doc.documentElement.setAttribute("translate", "no");
+        doc.documentElement.classList.add("notranslate");
+        if (!doc.querySelector('meta[name="google"][content="notranslate"]')) {
+            const meta = doc.createElement("meta");
+            meta.setAttribute("name", "google");
+            meta.setAttribute("content", "notranslate");
+            doc.head.appendChild(meta);
+        }
+        </script>
+        """,
+        height=0,
+    )
+
+
 def render_mobile_css() -> None:
     st.markdown(
         """
@@ -599,6 +626,7 @@ def render_relation_graph() -> None:
 
 def main() -> None:
     st.set_page_config(page_title="웹소설 네비게이터", page_icon="📚", layout="wide")
+    prevent_browser_auto_translation()
     render_mobile_css()
 
     config = load_active_config()
