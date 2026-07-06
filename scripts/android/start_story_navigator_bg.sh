@@ -5,6 +5,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 RUN_DIR="${ROOT_DIR}/.run"
 PID_FILE="${RUN_DIR}/story_navigator.pid"
 LOG_FILE="${RUN_DIR}/story_navigator.log"
+VENV_DIR="${ROOT_DIR}/.venv"
+DEPS_STAMP="${RUN_DIR}/deps_ok.stamp"
+REQ_FILE="${ROOT_DIR}/requirements.txt"
 
 mkdir -p "${RUN_DIR}"
 cd "${ROOT_DIR}"
@@ -34,14 +37,19 @@ if command -v termux-wake-lock >/dev/null 2>&1; then
   termux-wake-lock || true
 fi
 
-python_deps_stamp="${RUN_DIR}/deps_ok.stamp"
-if [ ! -f "${python_deps_stamp}" ]; then
-  "${PYTHON_BIN}" -m pip install --upgrade pip
-  "${PYTHON_BIN}" -m pip install -r requirements.txt
-  date -u +"%Y-%m-%dT%H:%M:%SZ" > "${python_deps_stamp}"
+if [ ! -x "${VENV_DIR}/bin/python" ]; then
+  "${PYTHON_BIN}" -m venv "${VENV_DIR}"
 fi
 
-nohup "${PYTHON_BIN}" -m streamlit run app.py \
+VENV_PY="${VENV_DIR}/bin/python"
+VENV_PIP="${VENV_DIR}/bin/pip"
+
+if [ ! -f "${DEPS_STAMP}" ] || [ "${REQ_FILE}" -nt "${DEPS_STAMP}" ]; then
+  "${VENV_PIP}" install -r requirements.txt
+  date -u +"%Y-%m-%dT%H:%M:%SZ" > "${DEPS_STAMP}"
+fi
+
+nohup "${VENV_PY}" -m streamlit run app.py \
   --server.address 0.0.0.0 \
   --server.port 8501 \
   --server.headless true \

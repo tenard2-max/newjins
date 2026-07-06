@@ -51,6 +51,9 @@ chmod +x scripts/start_android_termux.sh
 ./scripts/start_android_termux.sh
 ```
 
+> 참고: Termux에서 `ERROR: Installing pip is forbidden` 메시지가 뜨는 환경이 있습니다.  
+> 이 스크립트는 자동으로 `.venv` 가상환경을 생성해 그 안에 패키지를 설치하므로 해당 오류를 회피합니다.
+
 ### 4) 휴대폰 브라우저에서 열기
 
 - 같은 폰에서 접속: `http://127.0.0.1:8501`
