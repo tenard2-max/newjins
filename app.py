@@ -723,31 +723,84 @@ def main() -> None:
 
     with tab_files:
         st.subheader("스토리 파일 업데이트")
-        st.caption("마스터 파일, 스토리 파일(MD), 스토리바이블 ZIP을 업로드하고 활성 파일로 적용할 수 있습니다.")
+        st.caption("모바일 안정 모드(기본): 텍스트/경로 저장 방식으로 파일을 갱신합니다.")
 
-        uploaded_master = st.file_uploader("마스터 MD 업로드", type=["md"], key="master_upload")
-        if uploaded_master is not None and st.button("마스터 파일 저장 및 적용", key="save_master"):
-            saved_path = save_uploaded_file(uploaded_master, MASTER_UPLOAD_DIR)
-            config["master_file"] = str(saved_path)
+        st.markdown("#### 마스터 파일 본문 저장")
+        master_default_text = read_text(config.get("master_file", ""))
+        master_text = st.text_area(
+            "마스터 파일 내용 (MD)",
+            value=master_default_text,
+            height=220,
+            key="master_text_editor",
+        )
+        if st.button("마스터 본문 저장 및 적용", key="save_master_text"):
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            target = MASTER_UPLOAD_DIR / f"{timestamp}_master_from_text.md"
+            target.write_text(master_text, encoding="utf-8")
+            config["master_file"] = str(target)
             save_active_config(config)
-            st.success(f"마스터 파일 적용 완료: {saved_path.name}")
+            st.success(f"마스터 본문 저장 완료: {target.name}")
             st.rerun()
 
-        uploaded_story = st.file_uploader("스토리 파일 업로드 (MD)", type=["md"], key="story_upload")
-        if uploaded_story is not None and st.button("스토리 파일 저장 및 적용", key="save_story"):
-            saved_path = save_uploaded_file(uploaded_story, STORY_UPLOAD_DIR)
-            config["story_file"] = str(saved_path)
+        st.markdown("#### 스토리 파일 본문 저장")
+        story_default_text = read_text(config.get("story_file", ""))
+        story_text = st.text_area(
+            "스토리 파일 내용 (MD)",
+            value=story_default_text,
+            height=220,
+            key="story_text_editor",
+        )
+        if st.button("스토리 본문 저장 및 적용", key="save_story_text"):
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            target = STORY_UPLOAD_DIR / f"{timestamp}_story_from_text.md"
+            target.write_text(story_text, encoding="utf-8")
+            config["story_file"] = str(target)
             save_active_config(config)
-            st.success(f"스토리 파일 적용 완료: {saved_path.name}")
+            st.success(f"스토리 본문 저장 완료: {target.name}")
             st.rerun()
 
-        uploaded_zip = st.file_uploader("Story Bible ZIP 업로드", type=["zip"], key="zip_upload")
-        if uploaded_zip is not None and st.button("ZIP 저장 및 적용", key="save_zip"):
-            saved_path = save_uploaded_file(uploaded_zip, ZIP_UPLOAD_DIR)
-            config["story_bible_zip"] = str(saved_path)
+        st.markdown("#### 스토리바이블 ZIP 경로/링크 저장")
+        zip_hint = config.get("story_bible_zip", "")
+        zip_ref = st.text_input(
+            "ZIP 파일 경로 또는 URL",
+            value=zip_hint,
+            placeholder="예: /workspace/data/uploads/zip/story_bible.zip 또는 https://...",
+            key="zip_ref_input",
+        )
+        if st.button("ZIP 참조 저장 및 적용", key="save_zip_ref"):
+            config["story_bible_zip"] = zip_ref.strip()
             save_active_config(config)
-            st.success(f"ZIP 적용 완료: {saved_path.name}")
+            st.success("ZIP 참조가 저장되었습니다.")
             st.rerun()
+
+        st.markdown("---")
+        st.markdown("#### 고급 업로드 모드 (PC 권장)")
+        st.caption("일부 모바일+터널 환경에서는 파일 업로드 컴포넌트 로딩 오류가 발생할 수 있습니다.")
+        enable_advanced_upload = st.toggle("고급 업로드 모드 사용", value=False, key="advanced_upload_toggle")
+        if enable_advanced_upload:
+            uploaded_master = st.file_uploader("마스터 MD 업로드", type=["md"], key="master_upload")
+            if uploaded_master is not None and st.button("마스터 파일 저장 및 적용", key="save_master"):
+                saved_path = save_uploaded_file(uploaded_master, MASTER_UPLOAD_DIR)
+                config["master_file"] = str(saved_path)
+                save_active_config(config)
+                st.success(f"마스터 파일 적용 완료: {saved_path.name}")
+                st.rerun()
+
+            uploaded_story = st.file_uploader("스토리 파일 업로드 (MD)", type=["md"], key="story_upload")
+            if uploaded_story is not None and st.button("스토리 파일 저장 및 적용", key="save_story"):
+                saved_path = save_uploaded_file(uploaded_story, STORY_UPLOAD_DIR)
+                config["story_file"] = str(saved_path)
+                save_active_config(config)
+                st.success(f"스토리 파일 적용 완료: {saved_path.name}")
+                st.rerun()
+
+            uploaded_zip = st.file_uploader("Story Bible ZIP 업로드", type=["zip"], key="zip_upload")
+            if uploaded_zip is not None and st.button("ZIP 저장 및 적용", key="save_zip"):
+                saved_path = save_uploaded_file(uploaded_zip, ZIP_UPLOAD_DIR)
+                config["story_bible_zip"] = str(saved_path)
+                save_active_config(config)
+                st.success(f"ZIP 적용 완료: {saved_path.name}")
+                st.rerun()
 
         st.markdown("#### 활성 파일 수동 선택")
         master_candidates = available_files(config.get("master_file", ""), MASTER_UPLOAD_DIR, (".md",))
