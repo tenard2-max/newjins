@@ -19,6 +19,16 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+## Cursor Cloud Agent 환경 설정
+
+- 기본 이미지/시작 스크립트 설정 파일: `.cursor/environment.json`
+- 베이스 이미지 정의: `.cursor/Dockerfile`
+- 적용 내용:
+  - python3/pip/streamlit 기본 포함
+  - 시작 시 `data/` 및 하위 폴더 생성
+  - `data/` 쓰기 권한 보정
+  - Streamlit 서버(8501) 자동 실행
+
 ## 데이터 저장 위치
 
 - 기본 시드 문서: `data/seed/`

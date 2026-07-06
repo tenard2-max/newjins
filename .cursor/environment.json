@@ -1,0 +1,21 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "install": "python3 -m pip install --no-cache-dir --upgrade pip && python3 -m pip install --no-cache-dir -r requirements.txt",
+  "start": "mkdir -p data data/seed data/uploads/master data/uploads/story data/uploads/zip && chmod -R u+rwX data",
+  "terminals": [
+    {
+      "name": "streamlit-app",
+      "description": "Run Story Navigator Streamlit server",
+      "command": "streamlit run app.py --server.address 0.0.0.0 --server.port 8501 --server.headless true"
+    }
+  ],
+  "ports": [
+    {
+      "name": "streamlit",
+      "port": 8501
+    }
+  ]
+}
