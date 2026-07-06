@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "title": "Story Bible Project Constitution",
+  "rules": [
+    {
+      "id": "SOT",
+      "name": "단일 진실 원천",
+      "description": "99_Master_DB.md가 Character/Foreshadow/Investment/Boss/Episode DB의 집계 원본이다."
+    },
+    {
+      "id": "PREFIX",
+      "name": "파일 접두 규칙",
+      "description": "00~99 숫자 접두로 정렬·분류한다. 스토리 요약은 Novel_Story_Summary.md를 사용한다."
+    },
+    {
+      "id": "CHAR_ID",
+      "name": "인물 ID",
+      "description": "CH001 형식. Role/First EP/Future Role/Alive/Boss 필드를 유지한다."
+    },
+    {
+      "id": "FORE_ID",
+      "name": "떡밥 ID",
+      "description": "F001 형식. EP, Foreshadow, Planned Payoff, Status(OPEN|RESOLVED)를 기록한다."
+    },
+    {
+      "id": "BOSS_ID",
+      "name": "보스 ID",
+      "description": "B1~B7. 최종적으로 동료(Ally)가 되는 7보스 구조를 따른다."
+    },
+    {
+      "id": "EP_CHECK",
+      "name": "에피소드 체크리스트",
+      "description": "Master DB 하단 Episode Checklist로 집필 진행을 추적한다."
+    },
+    {
+      "id": "BALANCE",
+      "name": "통장 잔고",
+      "description": "Seed 단계 기본 58.7억. 투자 페이즈와 연동해 갱신한다."
+    },
+    {
+      "id": "EXPORT",
+      "name": "보내기",
+      "description": "bible/*.md 전체를 story_bible.zip으로 패키징한다."
+    }
+  ],
+  "defaults": {
+    "balance": 58.7,
+    "balanceUnit": "억",
+    "timelineStart": "2005-03-02",
+    "originalTimeline": "2080",
+    "storyStatus": "EP001~EP007"
+  }
+}
