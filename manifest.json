@@ -1,0 +1,19 @@
+{
+  "name": "웹소설 네비게이터",
+  "short_name": "소설네비",
+  "description": "Story Bible Project Constitution v1.0 기반 모바일 웹소설 관리 앱",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#08111f",
+  "orientation": "portrait",
+  "lang": "ko-KR",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

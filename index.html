@@ -2,357 +2,207 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NewJeans — 뉴진스</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#08111f">
+  <meta name="description" content="Story Bible Project Constitution v1.0 기반 웹소설 네비게이터">
+  <title>웹소설 네비게이터</title>
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-stars" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
-
-  <nav class="nav">
-    <a href="#" class="nav-logo">
-      <span class="nav-logo-dot"></span>
-      NewJeans
-    </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#members">Members</a></li>
-      <li><a href="#discography">Music</a></li>
-      <li><a href="#chart">Chart</a></li>
-      <li><a href="#news">News</a></li>
-    </ul>
-    <button class="nav-toggle" aria-label="메뉴 열기">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="pulse-dot"></span>
-          K-POP · GLOBAL · 5TH GEN
-        </div>
-        <h1 class="hero-title">
-          <span class="hero-title-main">NewJeans</span>
-          <span class="hero-title-sub">뉴진스</span>
-        </h1>
-        <p class="hero-desc">
-          Y2K 감성과 독창적인 사운드로<br>
-          전 세계를 연결하는 K-POP의 새로운 바람
-        </p>
-        <div class="hero-buttons">
-          <a href="#discography" class="btn btn-primary">
-            <span>앨범 보기</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="#members" class="btn btn-outline">멤버 소개</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-num">2022</span>
-            <span class="hero-stat-label">DEBUT</span>
-          </div>
-          <div class="hero-stat-divider"></div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">5</span>
-            <span class="hero-stat-label">MEMBERS</span>
-          </div>
-          <div class="hero-stat-divider"></div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">GLOBAL</span>
-            <span class="hero-stat-label">REACH</span>
-          </div>
-        </div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Story Bible Project Constitution v1.0</p>
+        <h1>웹소설 네비게이터</h1>
       </div>
-      <div class="hero-globe-wrap">
-        <div class="globe-ring globe-ring--1"></div>
-        <div class="globe-ring globe-ring--2"></div>
-        <div class="globe-ring globe-ring--3"></div>
-        <div class="hero-globe-image">
-          <img src="뉴진스.jpg" alt="뉴진스">
-        </div>
-        <div class="globe-hud">
-          <div class="globe-hud-corner globe-hud-corner--tl"></div>
-          <div class="globe-hud-corner globe-hud-corner--tr"></div>
-          <div class="globe-hud-corner globe-hud-corner--bl"></div>
-          <div class="globe-hud-corner globe-hud-corner--br"></div>
-          <span class="globe-hud-label">LIVE TRACKING</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-status-bar">
-      <span><em>SYS</em> STATUS: ONLINE</span>
-      <span><em>NET</em> GLOBAL CONNECTED</span>
-      <span><em>FAN</em> BUNNIES ACTIVE</span>
-      <span class="hero-status-time" id="heroTime"></span>
-    </div>
-    <div class="hero-scroll">
-      <span>SCROLL</span>
-      <div class="scroll-line"></div>
-    </div>
-  </header>
+      <button class="ghost-button" id="resetDataButton" type="button">초기화</button>
+    </header>
 
-  <section id="about" class="section about">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">// About</div>
-        <h2 class="section-title">새로운 K-POP의<br>정의를 쓰다</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-text glass-panel">
-          <div class="panel-corner panel-corner--tl"></div>
-          <div class="panel-corner panel-corner--br"></div>
-          <p>
-            <strong>뉴진스(NewJeans)</strong>는 2022년 7월 22일 ADOR(어도어) 소속으로
-            데뷔한 5인조 걸그룹입니다. 그룹명은 "새로운 것처럼 매일 새로운
-            뉴진스를 발견한다"는 의미를 담고 있습니다.
+    <main>
+      <section class="hero-card card">
+        <div>
+          <p class="eyebrow">2080 멸망 직전 1초 → 2005 회귀</p>
+          <h2>97% 생존 루트를 관리하는 모바일 스토리 콘솔</h2>
+          <p class="hero-copy">
+            인물, 회차, 복선, 투자, 통장잔고, 적/보스 진행도를 한 화면에서 추적합니다.
+            Master MD와 스토리 파일, Story Bible ZIP은 휴대폰에서 업로드하고 다시 내보낼 수 있습니다.
           </p>
-          <p>
-            'Attention', 'Hype Boy', 'Ditto' 등 히트곡을 통해
-            Y2K 감성과 미니멀한 비주얼, 중독성 있는 멜로디로
-            전 세계 팬들의 사랑을 받고 있습니다.
-          </p>
-          <ul class="about-stats">
-            <li>
-              <span class="stat-num">2022</span>
-              <span class="stat-label">데뷔</span>
-            </li>
-            <li>
-              <span class="stat-num">5</span>
-              <span class="stat-label">멤버</span>
-            </li>
-            <li>
-              <span class="stat-num">ADOR</span>
-              <span class="stat-label">소속사</span>
-            </li>
-          </ul>
         </div>
-        <div class="about-visual">
-          <div class="about-card glass-panel">
-            <div class="panel-corner panel-corner--tl"></div>
-            <div class="panel-corner panel-corner--br"></div>
-            <div class="bunny-icon">🐰</div>
-            <p>"Make it look easy"</p>
-            <span class="about-card-tag">SIGNATURE QUOTE</span>
+        <div class="hero-metrics" aria-label="프로젝트 핵심 지표">
+          <div>
+            <strong id="metricEpisodes">7</strong>
+            <span>완료 EP</span>
+          </div>
+          <div>
+            <strong id="metricBalance">58.7억</strong>
+            <span>통장잔고</span>
+          </div>
+          <div>
+            <strong>97%</strong>
+            <span>회귀 생존률</span>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <section id="members" class="section members">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">// Members</div>
-        <h2 class="section-title">5명의 멤버</h2>
-      </div>
-      <div class="members-grid">
-        <article class="member-card glass-panel" data-member="minji" data-base-name="민지" data-image="민지1.jfif">
-          <div class="member-img" style="--color: #00ccff">
-            <img src="민지1.jfif" alt="민지">
-            <div class="member-img-overlay"></div>
-          </div>
-          <h3>민지</h3>
-          <p class="member-en">Minji</p>
-          <p class="member-role">리더 · 보컬</p>
-        </article>
-        <article class="member-card glass-panel" data-member="hanni" data-base-name="하니" data-image="하니.webp">
-          <div class="member-img" style="--color: #00ffaa">
-            <img src="하니.webp" alt="하니">
-            <div class="member-img-overlay"></div>
-          </div>
-          <h3>하니</h3>
-          <p class="member-en">Hanni</p>
-          <p class="member-role">보컬</p>
-        </article>
-        <article class="member-card glass-panel" data-member="danielle" data-base-name="다니엘" data-image="다니엘.avif">
-          <div class="member-img" style="--color: #66b3ff">
-            <img src="다니엘.avif" alt="다니엘">
-            <div class="member-img-overlay"></div>
-          </div>
-          <h3>다니엘</h3>
-          <p class="member-en">Danielle</p>
-          <p class="member-role">보컬 · 래퍼</p>
-        </article>
-        <article class="member-card glass-panel" data-member="haerin" data-base-name="혜린" data-image="혜린.webp">
-          <div class="member-img" style="--color: #9d84ff">
-            <img src="혜린.webp" alt="해린">
-            <div class="member-img-overlay"></div>
-          </div>
-          <h3>해린</h3>
-          <p class="member-en">Haerin</p>
-          <p class="member-role">보컬</p>
-        </article>
-        <article class="member-card glass-panel" data-member="hyein" data-base-name="혜인" data-image="혜인.png">
-          <div class="member-img" style="--color: #ffcc00">
-            <img src="혜인.png" alt="혜인">
-            <div class="member-img-overlay"></div>
-          </div>
-          <h3>혜인</h3>
-          <p class="member-en">Hyein</p>
-          <p class="member-role">보컬 · 막내</p>
-        </article>
-      </div>
-    </div>
-  </section>
+      <nav class="tabbar" aria-label="주요 화면">
+        <button class="tab-button active" type="button" data-tab="dashboard">대시보드</button>
+        <button class="tab-button" type="button" data-tab="characters">인물</button>
+        <button class="tab-button" type="button" data-tab="relations">관계도</button>
+        <button class="tab-button" type="button" data-tab="finance">투자</button>
+        <button class="tab-button" type="button" data-tab="files">파일</button>
+      </nav>
 
-  <section id="discography" class="section discography">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">// Discography</div>
-        <h2 class="section-title">대표 앨범 &amp; 싱글</h2>
-      </div>
-      <div class="album-list">
-        <article class="album-card glass-panel">
-          <div class="album-cover" style="--album-color: rgba(0, 204, 255, 0.15)">
-            <span>New Jeans</span>
-          </div>
-          <div class="album-info">
-            <h3>New Jeans</h3>
-            <p class="album-date">2022.08</p>
-            <p class="album-tracks">Attention · Hype Boy · Cookie · Hurts</p>
-          </div>
-        </article>
-        <article class="album-card glass-panel">
-          <div class="album-cover" style="--album-color: rgba(0, 255, 170, 0.12)">
-            <span>OMG</span>
-          </div>
-          <div class="album-info">
-            <h3>OMG</h3>
-            <p class="album-date">2023.01</p>
-            <p class="album-tracks">Ditto · OMG</p>
-          </div>
-        </article>
-        <article class="album-card glass-panel">
-          <div class="album-cover" style="--album-color: rgba(157, 132, 255, 0.15)">
-            <span>Get Up</span>
-          </div>
-          <div class="album-info">
-            <h3>Get Up</h3>
-            <p class="album-date">2023.07</p>
-            <p class="album-tracks">Super Shy · ETA · Cool With You · ASMR</p>
-          </div>
-        </article>
-        <article class="album-card glass-panel">
-          <div class="album-cover" style="--album-color: rgba(255, 204, 0, 0.12)">
-            <span>How Sweet</span>
-          </div>
-          <div class="album-info">
-            <h3>How Sweet</h3>
-            <p class="album-date">2024.05</p>
-            <p class="album-tracks">How Sweet · Bubble Gum</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+      <section class="tab-panel active" id="dashboard" aria-labelledby="대시보드">
+        <div class="grid two">
+          <article class="card">
+            <div class="section-heading">
+              <p class="eyebrow">Important Issues</p>
+              <h2>중요 이슈</h2>
+            </div>
+            <div class="issue-list" id="issueList"></div>
+          </article>
 
-  <section id="chart" class="section chart">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">// Chart</div>
-        <h2 class="section-title">K-POP 데일리<br>통합 차트 TOP 5</h2>
-      </div>
-      <p class="chart-intro glass-panel">
-        현재 국내 음원 플랫폼 및 유튜브에서 집계된 K-POP 데일리 통합 차트(TOP 5)는
-        아이오아이의 <strong>'갑자기'</strong>가 1위를 기록 중입니다.
-      </p>
-      <ol class="chart-list">
-        <li class="chart-item chart-item--1 glass-panel">
-          <span class="chart-rank">01</span>
-          <div class="chart-info">
-            <h3>아이오아이 (I.O.I)</h3>
-            <p class="chart-song">갑자기</p>
-          </div>
-          <span class="chart-source">가이섬 차트</span>
-        </li>
-        <li class="chart-item glass-panel">
-          <span class="chart-rank">02</span>
-          <div class="chart-info">
-            <h3>코르티스 (CORTIS)</h3>
-            <p class="chart-song">REDRED</p>
-          </div>
-          <span class="chart-source">가이섬 차트</span>
-        </li>
-        <li class="chart-item glass-panel">
-          <span class="chart-rank">03</span>
-          <div class="chart-info">
-            <h3>아일릿 (ILLIT)</h3>
-            <p class="chart-song">It's Me</p>
-          </div>
-          <span class="chart-source">가이섬 차트</span>
-        </li>
-        <li class="chart-item glass-panel">
-          <span class="chart-rank">04</span>
-          <div class="chart-info">
-            <h3>에스파 (aespa)</h3>
-            <p class="chart-song">LEMONADE</p>
-          </div>
-          <span class="chart-source">가이섬 차트</span>
-        </li>
-        <li class="chart-item glass-panel">
-          <span class="chart-rank">05</span>
-          <div class="chart-info">
-            <h3>리센느 (RESCENE)</h3>
-            <p class="chart-song">LOVE ATTACK</p>
-          </div>
-          <span class="chart-source">가이섬 차트</span>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="news" class="section news">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">// Bunnies</div>
-        <h2 class="section-title">팬덤 &amp; 특징</h2>
-      </div>
-      <div class="news-grid">
-        <div class="news-card glass-panel">
-          <div class="news-icon">💙</div>
-          <h3>Bunnies</h3>
-          <p>뉴진스의 공식 팬덤명. 토끼(Bunny)에서 유래했으며, 멤버들과 팬이 함께 성장하는 공동체를 상징합니다.</p>
+          <article class="card">
+            <div class="section-heading">
+              <p class="eyebrow">Enemy Watch</p>
+              <h2>적 리스트</h2>
+            </div>
+            <div class="enemy-list" id="enemyList"></div>
+          </article>
         </div>
-        <div class="news-card glass-panel">
-          <div class="news-icon">✨</div>
-          <h3>Y2K Aesthetic</h3>
-          <p>2000년대 초반 감성을 현대적으로 재해석한 비주얼. 미니멀하고 청량한 이미지가 시그니처입니다.</p>
-        </div>
-        <div class="news-card glass-panel">
-          <div class="news-icon">🎵</div>
-          <h3>Unique Sound</h3>
-          <p>R&amp;B, UK Garage, Jersey Club 등 다양한 장르를 융합한 독특한 사운드로 글로벌 차트를 석권했습니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-logo">NewJeans</p>
-      <p class="footer-copy">K-POP Fan Page · Made with 💙 for Bunnies</p>
-      <p class="footer-note">※ 비공식 팬 페이지입니다</p>
-    </div>
-  </footer>
+        <article class="card">
+          <div class="section-heading">
+            <p class="eyebrow">Episode Timeline</p>
+            <h2>스토리 진행</h2>
+          </div>
+          <div class="timeline" id="episodeTimeline"></div>
+        </article>
+      </section>
 
-  <div class="member-modal" id="memberModal" aria-hidden="true">
-    <div class="member-modal-backdrop"></div>
-    <div class="member-modal-box glass-panel" role="dialog" aria-modal="true" aria-labelledby="memberModalName">
-      <button class="member-modal-close" type="button" aria-label="닫기">&times;</button>
-      <div class="member-modal-gallery" id="memberModalGallery"></div>
-      <h3 class="member-modal-name" id="memberModalName"></h3>
-      <p class="member-modal-en"></p>
-      <p class="member-modal-role"></p>
-    </div>
+      <section class="tab-panel" id="characters" aria-labelledby="인물">
+        <article class="card">
+          <div class="section-heading">
+            <p class="eyebrow">Character Selector</p>
+            <h2>인물 선택</h2>
+          </div>
+          <div class="character-selector" id="characterSelector"></div>
+          <div class="character-detail" id="characterDetail"></div>
+        </article>
+      </section>
+
+      <section class="tab-panel" id="relations" aria-labelledby="관계도">
+        <article class="card">
+          <div class="section-heading">
+            <p class="eyebrow">Relationship Map</p>
+            <h2>인물 관계도</h2>
+          </div>
+          <div class="map-help">인물을 선택하면 관계선과 상세 카드가 함께 강조됩니다.</div>
+          <div class="relation-map" id="relationMap"></div>
+        </article>
+      </section>
+
+      <section class="tab-panel" id="finance" aria-labelledby="투자">
+        <div class="grid two">
+          <article class="card balance-card">
+            <div class="section-heading">
+              <p class="eyebrow">Bank Account</p>
+              <h2>통장잔고</h2>
+            </div>
+            <strong id="balanceValue">58.7억</strong>
+            <span>아버지에게 위임받은 초기 운용금</span>
+            <label class="field">
+              <span>잔고 메모</span>
+              <input id="balanceNoteInput" type="text" placeholder="예: Seed 자금 확보 완료">
+            </label>
+          </article>
+
+          <article class="card">
+            <div class="section-heading">
+              <p class="eyebrow">Investment Roadmap</p>
+              <h2>투자 목록</h2>
+            </div>
+            <div class="investment-list" id="investmentList"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="files" aria-labelledby="파일">
+        <div class="grid two">
+          <article class="card">
+            <div class="section-heading">
+              <p class="eyebrow">Update Sources</p>
+              <h2>문서 업데이트</h2>
+            </div>
+            <div class="upload-stack">
+              <label class="file-drop">
+                <input id="masterFileInput" type="file" accept=".md,.txt,text/markdown,text/plain">
+                <span>Master MD 업로드</span>
+                <small id="masterFileName">99_Master_DB.md 기본값 사용 중</small>
+              </label>
+              <label class="file-drop">
+                <input id="storyFileInput" type="file" accept=".md,.txt,text/markdown,text/plain">
+                <span>스토리 파일 업로드</span>
+                <small id="storyFileName">EP001~007 요약 기본값 사용 중</small>
+              </label>
+              <label class="file-drop">
+                <input id="zipFileInput" type="file" accept=".zip,application/zip">
+                <span>Story Bible ZIP 업로드</span>
+                <small id="zipFileName">ZIP을 올리면 내부 md를 반영합니다</small>
+              </label>
+            </div>
+            <div class="button-row">
+              <button class="primary-button" id="syncEditorsButton" type="button">문서 내용 동기화</button>
+              <button class="ghost-button" id="saveEditorsButton" type="button">로컬 저장</button>
+            </div>
+            <p class="status-message" id="fileStatus" role="status"></p>
+          </article>
+
+          <article class="card">
+            <div class="section-heading">
+              <p class="eyebrow">Export</p>
+              <h2>내보내기</h2>
+            </div>
+            <p class="muted">
+              현재 앱 상태와 편집 중인 문서를 기반으로 Master MD, Story MD, Story Bible ZIP을 생성합니다.
+              ZIP은 압축하지 않은 표준 zip 형식이라 모바일에서도 빠르게 다운로드됩니다.
+            </p>
+            <div class="button-row vertical">
+              <button class="primary-button" id="exportMasterButton" type="button">Master MD 다운로드</button>
+              <button class="primary-button" id="exportStoryButton" type="button">Story MD 다운로드</button>
+              <button class="primary-button" id="exportZipButton" type="button">Story Bible ZIP 다운로드</button>
+            </div>
+          </article>
+        </div>
+
+        <article class="card editor-card">
+          <div class="section-heading">
+            <p class="eyebrow">Editable Documents</p>
+            <h2>문서 편집기</h2>
+          </div>
+          <div class="editor-grid">
+            <label class="field">
+              <span>Master MD</span>
+              <textarea id="masterEditor" spellcheck="false"></textarea>
+            </label>
+            <label class="field">
+              <span>Story Summary MD</span>
+              <textarea id="storyEditor" spellcheck="false"></textarea>
+            </label>
+            <label class="field wide">
+              <span>Story Bible 추가 메모</span>
+              <textarea id="bibleEditor" spellcheck="false"></textarea>
+            </label>
+          </div>
+        </article>
+      </section>
+    </main>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

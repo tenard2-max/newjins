@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Story Navigator icon">
+  <defs>
+    <linearGradient id="bg" x1="80" x2="432" y1="70" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5eead4"/>
+      <stop offset="0.52" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="page" x1="160" x2="352" y1="118" y2="394" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#07111f"/>
+  <circle cx="256" cy="256" r="202" fill="url(#bg)" opacity="0.9"/>
+  <path fill="#07111f" opacity="0.24" d="M115 369 356 128l59 61-241 241z"/>
+  <path fill="url(#page)" d="M167 112h144l70 72v216H167z"/>
+  <path fill="#94a3b8" d="M311 112v72h70z"/>
+  <path fill="#0f172a" d="M198 224h116v18H198zm0 48h148v18H198zm0 48h118v18H198z"/>
+  <circle cx="179" cy="168" r="44" fill="#07111f"/>
+  <text x="179" y="183" fill="#5eead4" font-family="Arial, sans-serif" font-size="42" font-weight="800" text-anchor="middle">97</text>
+  <path fill="none" stroke="#5eead4" stroke-linecap="round" stroke-width="18" d="M346 337c35 17 45 43 31 63-18 25-68 11-91-31"/>
+</svg>
