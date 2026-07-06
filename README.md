@@ -19,6 +19,48 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+## 안드로이드 휴대폰 단독 실행 (Termux)
+
+휴대폰만으로 상시 사용하려면, 터널 주소 대신 폰 안에서 서버를 직접 띄우는 방식이 가장 안정적입니다.
+
+### 1) Termux 설치 후 1회 초기화
+
+```bash
+pkg update -y && pkg upgrade -y
+pkg install -y git python
+```
+
+### 2) 프로젝트 내려받기
+
+```bash
+git clone https://github.com/tenard2-max/newjins.git
+cd newjins
+```
+
+이미 clone 했다면:
+
+```bash
+cd newjins
+git pull
+```
+
+### 3) 서버 실행 (안드로이드 전용 스크립트)
+
+```bash
+chmod +x scripts/start_android_termux.sh
+./scripts/start_android_termux.sh
+```
+
+### 4) 휴대폰 브라우저에서 열기
+
+- 같은 폰에서 접속: `http://127.0.0.1:8501`
+- 실행이 확인되면 크롬 메뉴에서 **홈 화면에 추가**하면 앱처럼 사용 가능합니다.
+
+### 5) 끊김 방지 권장
+
+- 안드로이드 배터리 최적화에서 Termux를 예외로 설정
+- 화면이 꺼져도 유지하려면 `termux-wake-lock` 권장(가능한 환경에서 자동 호출됨)
+
 ## 상시 접속(로컬 서버) 권장 방법
 
 터널 주소(trycloudflare, loca.lt)는 시간이 지나면 바뀌거나 끊길 수 있습니다.  
