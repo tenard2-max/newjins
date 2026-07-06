@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+
+# Streamlit local/runtime artifacts
+.streamlit/
+data/uploads/
+data/ledger.json
+data/active_files.json
