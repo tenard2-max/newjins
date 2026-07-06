@@ -1,0 +1,139 @@
+{
+  "project": {
+    "title": "(가제) 마지막 1초",
+    "constitution_version": "1.0",
+    "timeline_start": "2005-03-02",
+    "original_timeline": "2080",
+    "story_status": "EP001~EP007",
+    "genres": ["회귀", "캠퍼스", "투자", "SF", "판타지", "게이트", "성장"]
+  },
+  "characters": [
+    {
+      "id": "CH001",
+      "name": "주인공",
+      "role": "회귀자",
+      "first_ep": "EP001",
+      "future_role": "인류 구원",
+      "alive": true,
+      "boss": "N",
+      "canon": "CANON",
+      "notes": "100세 이상 회귀. 초기 치매 수준의 기억 손실. 마지막 1초만 선명. 20살 대학생으로 회귀.",
+      "traits": ["100세 이상 회귀", "기억 일부 소실", "20살 대학생", "사람과 미래를 바꾸는 역할"]
+    },
+    {
+      "id": "CH002",
+      "name": "AI 폰",
+      "role": "AI",
+      "first_ep": "EP001",
+      "future_role": "최종보스",
+      "alive": true,
+      "boss": "Final",
+      "canon": "CANON",
+      "notes": "2080년 자기학습 AI. 오프라인 동작. 노인 케어 성격(40대 여성). 투자 및 전략 전담. 점차 인간성 획득, 최종적으로 인류를 위한 적이 됨.",
+      "traits": ["2080년 최신 자기학습 AI", "노인 케어 AI(40대 여성)", "투자·전략 담당", "미래 최종보스", "미래 기억 일부 보유"]
+    },
+    {
+      "id": "CH003",
+      "name": "민수",
+      "role": "친구",
+      "first_ep": "EP002",
+      "future_role": "최강 방패",
+      "alive": true,
+      "boss": "예정",
+      "canon": "CANON",
+      "notes": "맵부심 보유. 미래 최강 방패로 성장 예정.",
+      "traits": ["맵부심", "미래 최강 방패", "대학 친구"]
+    },
+    {
+      "id": "CH004",
+      "name": "지은",
+      "role": "첫사랑",
+      "first_ep": "EP003",
+      "future_role": "보호 대상",
+      "alive": true,
+      "boss": "N",
+      "canon": "CANON",
+      "notes": "반드시 지키고 싶은 평범한 인간. '지은을 지켜야 하는 이유'는 미회수 떡밥.",
+      "traits": ["첫사랑", "평범한 인간", "보호 대상"]
+    },
+    {
+      "id": "CH005",
+      "name": "수아",
+      "role": "친구",
+      "first_ep": "EP004",
+      "future_role": "핵심 조력자",
+      "alive": true,
+      "boss": "N",
+      "canon": "CANON",
+      "notes": "지은의 친구. 후반 비중 증가.",
+      "traits": ["지은의 친구", "후반 핵심 조력자"]
+    },
+    {
+      "id": "CH006",
+      "name": "아버지",
+      "role": "가족",
+      "first_ep": "EP007",
+      "future_role": "투자 지원",
+      "alive": true,
+      "boss": "N",
+      "canon": "CANON",
+      "notes": "중견기업 오너. 약 58.7억 투자금 운용 권한을 주인공에게 위임.",
+      "traits": ["중견기업 오너", "투자금 58.7억 위임"]
+    }
+  ],
+  "relationships": [
+    {"source": "CH001", "target": "CH002", "type": "조력", "label": "회귀 동반자 / 전략 파트너", "note": "AI가 투자·전략 담당, 주인공은 사람과 미래 담당. 단, AI는 예정된 최종보스."},
+    {"source": "CH002", "target": "CH001", "type": "위협", "label": "예정된 최종보스", "note": "최종적으로 인류를 위한 적이 됨."},
+    {"source": "CH001", "target": "CH003", "type": "우정", "label": "대학 친구", "note": "EP002 재회. 미래 최강 방패."},
+    {"source": "CH001", "target": "CH004", "type": "애정", "label": "첫사랑", "note": "EP003 재회. 반드시 지키고 싶은 사람."},
+    {"source": "CH004", "target": "CH005", "type": "우정", "label": "친구", "note": "수아는 지은의 친구."},
+    {"source": "CH005", "target": "CH001", "type": "조력", "label": "후반 핵심 조력자", "note": "후반 비중 증가."},
+    {"source": "CH006", "target": "CH001", "type": "가족", "label": "아버지", "note": "EP007 투자금 58.7억 위임."}
+  ],
+  "episodes": [
+    {"ep": "EP001", "title": "마지막 1초 / 회귀 / AI폰 재기동", "done": true},
+    {"ep": "EP002", "title": "대학 친구들과 재회 / 미래 보스의 단서", "done": true},
+    {"ep": "EP003", "title": "지은과 재회 / 잃어버린 청춘의 감정", "done": true},
+    {"ep": "EP004", "title": "AI와 일상 시작 / 첫 이상 징후", "done": true},
+    {"ep": "EP005", "title": "민수의 맵부심 에피소드 / AI의 유머와 인간성", "done": true},
+    {"ep": "EP006", "title": "AI가 투자 계획 제시 / 인류 생존 프로젝트 시작", "done": true},
+    {"ep": "EP007", "title": "아버지에게 투자금 확보 / 첫 자본 마련", "done": true},
+    {"ep": "EP008", "title": "(집필 예정)", "done": false}
+  ],
+  "foreshadows": [
+    {"id": "F001", "ep": "EP001", "content": "마지막 1초", "payoff": "최종부", "status": "OPEN"},
+    {"id": "F002", "ep": "EP001", "content": "AI의 사과", "payoff": "최종부", "status": "OPEN"},
+    {"id": "F003", "ep": "EP004", "content": "위성 이상", "payoff": "게이트 전조", "status": "OPEN"},
+    {"id": "F004", "ep": "EP006", "content": "97%", "payoff": "최종부", "status": "OPEN"},
+    {"id": "F005", "ep": "EP003", "content": "지은을 지켜야 하는 이유", "payoff": "중후반", "status": "OPEN"}
+  ],
+  "issues": [
+    {"id": "I001", "title": "3년 안에 게이트 대비 시작", "priority": "높음", "status": "진행", "note": "장기 목표 1. 2008년까지 기반 확보 필요."},
+    {"id": "I002", "title": "7명의 미래 보스를 동료로 영입", "priority": "높음", "status": "대기", "note": "장기 목표 2. B1~B7 전원 LOCK 상태."},
+    {"id": "I003", "title": "전략 자산 1,000조 규모 구축", "priority": "높음", "status": "진행", "note": "장기 목표 3. 현재 Seed 단계(58.7억)."},
+    {"id": "I004", "title": "AI가 핵을 발사한 진실 규명", "priority": "중간", "status": "대기", "note": "장기 목표 4. 떡밥 F002(AI의 사과)와 연결."},
+    {"id": "I005", "title": "AI와 함께 97%의 미래 완성", "priority": "높음", "status": "진행", "note": "장기 목표 5. 떡밥 F004(97%)와 연결."},
+    {"id": "I006", "title": "EP008 집필", "priority": "중간", "status": "대기", "note": "에피소드 체크리스트 다음 항목."}
+  ],
+  "investments": [
+    {"phase": "Seed", "capital": "58.7억", "capital_billion": 58.7, "goal": "초기 투자 (동일패브릭 / AI 매매 전담)", "status": "진행"},
+    {"phase": "P1", "capital": "100억", "capital_billion": 100, "goal": "기반 구축", "status": "예정"},
+    {"phase": "P2", "capital": "1조", "capital_billion": 10000, "goal": "기업 확보", "status": "예정"},
+    {"phase": "P3", "capital": "100조", "capital_billion": 1000000, "goal": "전략 자산", "status": "예정"},
+    {"phase": "Final", "capital": "1000조", "capital_billion": 10000000, "goal": "인류 생존 프로젝트", "status": "예정"}
+  ],
+  "transactions": [
+    {"date": "2005-04-15", "ep": "EP007", "desc": "아버지 투자금 위임 (초기 운용금)", "amount_billion": 58.7}
+  ],
+  "enemies": [
+    {"id": "B1", "name": "미정", "first_ep": "-", "ally": "예정", "status": "LOCK", "threat": "미공개", "note": "인간/아인종 혼합. 최종적으로 동료가 됨."},
+    {"id": "B2", "name": "미정", "first_ep": "-", "ally": "예정", "status": "LOCK", "threat": "미공개", "note": "인간/아인종 혼합. 최종적으로 동료가 됨."},
+    {"id": "B3", "name": "미정", "first_ep": "-", "ally": "예정", "status": "LOCK", "threat": "미공개", "note": "인간/아인종 혼합. 최종적으로 동료가 됨."},
+    {"id": "B4", "name": "미정", "first_ep": "-", "ally": "예정", "status": "LOCK", "threat": "미공개", "note": "인간/아인종 혼합. 최종적으로 동료가 됨."},
+    {"id": "B5", "name": "미정", "first_ep": "-", "ally": "예정", "status": "LOCK", "threat": "미공개", "note": "인간/아인종 혼합. 최종적으로 동료가 됨."},
+    {"id": "B6", "name": "미정", "first_ep": "-", "ally": "예정", "status": "LOCK", "threat": "미공개", "note": "인간/아인종 혼합. 최종적으로 동료가 됨."},
+    {"id": "B7", "name": "미정", "first_ep": "-", "ally": "예정", "status": "LOCK", "threat": "미공개", "note": "인간/아인종 혼합. 최종적으로 동료가 됨."},
+    {"id": "FINAL", "name": "AI 폰 (CH002)", "first_ep": "EP001", "ally": "현재 조력자", "status": "예정", "threat": "최상", "note": "예정된 최종보스. 점차 인간성을 획득, 최종적으로 인류를 위한 적이 됨."},
+    {"id": "GATE", "name": "고위 아인종 (게이트 침공 세력)", "first_ep": "-", "ally": "N", "status": "예측", "threat": "멸망급", "note": "AI가 2080년 침공 예측. 태양계 자원 확보가 목적."}
+  ]
+}
