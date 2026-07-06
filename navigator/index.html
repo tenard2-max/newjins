@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
+  <meta name="theme-color" content="#0a0e1a" />
+  <meta name="description" content="웹소설 스토리 바이블 네비게이터 — 인물, 관계도, 떡밥, 투자, 통장, 적 리스트" />
+  <title>스토리 네비게이터</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="스토리" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- ── 상단 헤더 ── -->
+  <header class="appbar">
+    <div class="appbar-left">
+      <span class="appbar-dot"></span>
+      <div class="appbar-titles">
+        <h1 class="appbar-title" id="appTitle">스토리 네비게이터</h1>
+        <p class="appbar-sub" id="appSub">EP001~EP007</p>
+      </div>
+    </div>
+    <button class="icon-btn" id="btnInstall" title="앱 설치" hidden>설치</button>
+    <button class="icon-btn" id="btnMenu" title="데이터 관리" aria-label="데이터 관리">⋯</button>
+  </header>
+
+  <!-- ── 탭 컨텐츠 영역 ── -->
+  <main class="content" id="content">
+
+    <!-- 개요 -->
+    <section class="tab-panel" data-panel="home">
+      <div class="hero-card panel">
+        <div class="hero-badge"><span class="pulse"></span> <span id="constText">Story Bible Constitution v1.0</span></div>
+        <h2 class="hero-title" id="heroTitle">마지막 1초</h2>
+        <p class="hero-desc" id="heroDesc"></p>
+        <div class="chips" id="genreChips"></div>
+        <div class="hero-meta">
+          <div class="meta-box"><span class="meta-num" id="mCharCount">0</span><span class="meta-label">인물</span></div>
+          <div class="meta-box"><span class="meta-num" id="mEpCount">0</span><span class="meta-label">에피소드</span></div>
+          <div class="meta-box"><span class="meta-num" id="mForeCount">0</span><span class="meta-label">떡밥</span></div>
+          <div class="meta-box"><span class="meta-num" id="mBalance">0</span><span class="meta-label">통장(억)</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel-h">에피소드 진행</h3>
+        <div id="episodeList" class="ep-list"></div>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel-h">장기 목표</h3>
+        <ol id="goalList" class="goal-list"></ol>
+      </div>
+    </section>
+
+    <!-- 인물 -->
+    <section class="tab-panel" data-panel="chars" hidden>
+      <div class="section-head">
+        <h2 class="section-title">인물</h2>
+        <button class="mini-btn" id="btnAddChar">+ 인물 추가</button>
+      </div>
+      <div class="char-grid" id="charGrid"></div>
+    </section>
+
+    <!-- 관계도 -->
+    <section class="tab-panel" data-panel="map" hidden>
+      <div class="section-head">
+        <h2 class="section-title">인물 관계도</h2>
+        <span class="legend">
+          <i class="lg lg-love"></i>애정
+          <i class="lg lg-ally"></i>동료
+          <i class="lg lg-family"></i>가족
+        </span>
+      </div>
+      <div class="map-wrap panel" id="mapWrap">
+        <svg id="relSvg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+      <p class="hint">노드를 탭하면 해당 인물 상세로 이동합니다.</p>
+    </section>
+
+    <!-- 이슈/투자/통장/보스 -->
+    <section class="tab-panel" data-panel="issues" hidden>
+      <div class="subtabs">
+        <button class="subtab active" data-sub="fore">중요 이슈</button>
+        <button class="subtab" data-sub="invest">투자</button>
+        <button class="subtab" data-sub="bank">통장</button>
+        <button class="subtab" data-sub="boss">적 리스트</button>
+      </div>
+
+      <div class="subpanel" data-subpanel="fore">
+        <div class="section-head"><h3 class="section-title">떡밥 / 중요 이슈</h3><button class="mini-btn" id="btnAddFore">+ 추가</button></div>
+        <div id="foreList" class="issue-list"></div>
+      </div>
+
+      <div class="subpanel" data-subpanel="invest" hidden>
+        <h3 class="section-title">투자 로드맵</h3>
+        <div id="investList" class="invest-list"></div>
+        <div class="panel invest-note">
+          <p><b>1차 목표</b> · <span id="investFirst"></span></p>
+          <p><b>장기 목표</b> · <span id="investLong"></span></p>
+        </div>
+      </div>
+
+      <div class="subpanel" data-subpanel="bank" hidden>
+        <div class="balance-card panel">
+          <span class="balance-label">통장 잔고</span>
+          <span class="balance-amount"><span id="bankBalance">0</span><em id="bankUnit">억원</em></span>
+        </div>
+        <div class="section-head"><h3 class="section-title">거래 내역</h3><button class="mini-btn" id="btnAddTx">+ 입출금</button></div>
+        <div id="txList" class="tx-list"></div>
+      </div>
+
+      <div class="subpanel" data-subpanel="boss" hidden>
+        <div class="section-head"><h3 class="section-title">적 리스트 (7보스)</h3><button class="mini-btn" id="btnEditBoss">일괄 편집</button></div>
+        <p class="hint" id="bossNote"></p>
+        <div id="bossList" class="boss-list"></div>
+      </div>
+    </section>
+
+    <!-- 문서/저장 -->
+    <section class="tab-panel" data-panel="files" hidden>
+      <div class="section-head"><h2 class="section-title">문서 편집 & 저장</h2></div>
+      <div class="panel export-panel">
+        <p class="hint">스토리 파일과 마스터 문서를 직접 수정하고, 스토리바이블.zip으로 내보낼 수 있습니다.</p>
+        <div class="export-actions">
+          <button class="cta" id="btnExportZip">스토리바이블.zip 다운로드</button>
+          <button class="mini-btn" id="btnExportMaster">99_Master_DB.md 재생성</button>
+        </div>
+        <div class="export-actions">
+          <button class="mini-btn" id="btnResetData">기본값으로 초기화</button>
+          <label class="mini-btn file-import">데이터 가져오기(JSON)
+            <input type="file" id="importInput" accept="application/json" hidden />
+          </label>
+          <button class="mini-btn" id="btnExportJson">데이터 백업(JSON)</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <label class="field-label" for="fileSelect">문서 선택</label>
+        <select id="fileSelect" class="select"></select>
+        <textarea id="fileEditor" class="editor" spellcheck="false"></textarea>
+        <div class="editor-actions">
+          <button class="cta" id="btnSaveFile">이 문서 저장</button>
+          <span class="save-state" id="saveState"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── 하단 탭바 ── -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tab active" data-tab="home"><span class="tab-ico">◎</span><span>개요</span></button>
+    <button class="tab" data-tab="chars"><span class="tab-ico">👤</span><span>인물</span></button>
+    <button class="tab" data-tab="map"><span class="tab-ico">🕸</span><span>관계도</span></button>
+    <button class="tab" data-tab="issues"><span class="tab-ico">◆</span><span>이슈</span></button>
+    <button class="tab" data-tab="files"><span class="tab-ico">🗂</span><span>문서</span></button>
+  </nav>
+
+  <!-- ── 인물 상세 모달 ── -->
+  <div class="modal" id="charModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box panel" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="닫기">&times;</button>
+      <div id="charModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ── 편집 시트 (공용) ── -->
+  <div class="modal" id="editModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box panel" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="닫기">&times;</button>
+      <h3 class="modal-title" id="editTitle">편집</h3>
+      <div id="editBody" class="edit-form"></div>
+      <div class="editor-actions">
+        <button class="cta" id="editSave">저장</button>
+        <button class="mini-btn danger" id="editDelete" hidden>삭제</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
