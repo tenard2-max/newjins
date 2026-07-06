@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 from datetime import datetime
+from html import escape
 from pathlib import Path
 from typing import Any
 
@@ -561,6 +562,27 @@ def render_mobile_css() -> None:
             color: #64748b;
             margin-bottom: 0.6rem;
         }
+        .story-mobile-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.4rem 0 1rem;
+            font-size: 0.92rem;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+        .story-mobile-table th,
+        .story-mobile-table td {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+            padding: 0.55rem 0.5rem;
+            text-align: left;
+            vertical-align: top;
+            word-break: break-word;
+        }
+        .story-mobile-table th {
+            background: rgba(30, 41, 59, 0.8);
+            font-weight: 600;
+        }
         @media (max-width: 768px) {
             .block-container {
                 padding-left: 0.8rem;
@@ -580,21 +602,55 @@ def render_mobile_css() -> None:
     )
 
 
-def render_relation_graph() -> None:
-    dot = """
-    graph StoryRelations {
-      rankdir=LR;
-      node [shape=ellipse, style=filled, fillcolor="#edf2ff", color="#475569", fontname="NanumGothic"];
-      "주인공" -- "AI 폰" [label="전략 동맹/미래 대립"];
-      "주인공" -- "민수" [label="친구"];
-      "주인공" -- "지은" [label="첫사랑/보호"];
-      "지은" -- "수아" [label="친구"];
-      "주인공" -- "아버지" [label="가족/투자 지원"];
-      "AI 폰" -- "7보스" [label="미래 충돌 축"];
-      "7보스" -- "게이트 세력" [label="침공 연계"];
-    }
+def format_cell_value(value: Any) -> str:
+    if value is None:
+        return "-"
+    if isinstance(value, list):
+        converted = [str(item).strip() for item in value if str(item).strip()]
+        return " / ".join(converted) if converted else "-"
+    return str(value)
+
+
+def render_simple_table(
+    rows: list[dict[str, Any]],
+    column_order: list[str] | None = None,
+    column_labels: dict[str, str] | None = None,
+) -> None:
+    if not rows:
+        st.info("표시할 데이터가 없습니다.")
+        return
+
+    labels = column_labels or {}
+    if column_order is None:
+        column_order = list(rows[0].keys())
+
+    header_html = "".join(f"<th>{escape(labels.get(col, col))}</th>" for col in column_order)
+    body_rows = []
+    for row in rows:
+        cells = "".join(f"<td>{escape(format_cell_value(row.get(col)))}</td>" for col in column_order)
+        body_rows.append(f"<tr>{cells}</tr>")
+    body_html = "".join(body_rows)
+
+    table_html = f"""
+    <table class="story-mobile-table">
+      <thead><tr>{header_html}</tr></thead>
+      <tbody>{body_html}</tbody>
+    </table>
     """
-    st.graphviz_chart(dot)
+    st.markdown(table_html, unsafe_allow_html=True)
+
+
+def render_relation_graph() -> None:
+    relation_rows = [
+        {"인물 A": "주인공", "인물 B": "AI 폰", "관계": "전략 동맹 / 미래 대립"},
+        {"인물 A": "주인공", "인물 B": "민수", "관계": "친구 / 전투 협력"},
+        {"인물 A": "주인공", "인물 B": "지은", "관계": "첫사랑 / 보호 대상"},
+        {"인물 A": "지은", "인물 B": "수아", "관계": "친구 / 후반 조력 축"},
+        {"인물 A": "주인공", "인물 B": "아버지", "관계": "가족 / 투자 지원"},
+        {"인물 A": "AI 폰", "인물 B": "7보스", "관계": "미래 충돌 축"},
+        {"인물 A": "7보스", "인물 B": "게이트 세력", "관계": "침공 연계"},
+    ]
+    render_simple_table(relation_rows)
 
 
 def main() -> None:
@@ -648,9 +704,9 @@ def main() -> None:
         col3.metric("원래 타임라인", project.get("Original Timeline", "N/A"))
 
         st.markdown("#### 에피소드 진행")
-        st.dataframe(master_data["episodes"], use_container_width=True, hide_index=True)
+        render_simple_table(master_data["episodes"], column_labels={"episode": "에피소드", "status": "상태"})
         st.markdown("#### 에피소드 요약")
-        st.dataframe(story_data["timeline"], use_container_width=True, hide_index=True)
+        render_simple_table(story_data["timeline"], column_labels={"episode": "에피소드", "summary": "요약"})
 
     with tab_character:
         st.subheader("인물 선택")
@@ -676,7 +732,33 @@ def main() -> None:
                 st.markdown(f"- {selected_character['notes']}")
 
         st.markdown("#### 전체 인물 목록")
-        st.dataframe(character_rows, use_container_width=True, hide_index=True)
+        character_rows_for_table = []
+        for row in character_rows:
+            character_rows_for_table.append(
+                {
+                    "id": row["id"],
+                    "name": row["name"],
+                    "role": row["role"],
+                    "first_ep": row["first_ep"],
+                    "future_role": row["future_role"],
+                    "alive": row["alive"],
+                    "boss": row["boss"],
+                    "details": row.get("details", []),
+                }
+            )
+        render_simple_table(
+            character_rows_for_table,
+            column_labels={
+                "id": "ID",
+                "name": "이름",
+                "role": "역할",
+                "first_ep": "첫 등장",
+                "future_role": "미래 역할",
+                "alive": "생존",
+                "boss": "보스 플래그",
+                "details": "상세",
+            },
+        )
 
     with tab_relation:
         st.subheader("인물 관계도")
@@ -688,11 +770,22 @@ def main() -> None:
 
         with issue_tab:
             st.markdown("#### 중요 이슈")
-            st.dataframe(important_issues, use_container_width=True, hide_index=True)
+            render_simple_table(
+                important_issues,
+                column_labels={
+                    "category": "분류",
+                    "priority": "우선순위",
+                    "issue": "이슈",
+                    "action": "대응",
+                },
+            )
 
         with invest_tab:
             st.markdown("#### 투자 로드맵")
-            st.dataframe(master_data["investments"], use_container_width=True, hide_index=True)
+            render_simple_table(
+                master_data["investments"],
+                column_labels={"phase": "단계", "capital": "자본", "goal": "목표", "status": "상태"},
+            )
             st.metric("현재 통장잔고(억 원)", f"{current_balance:.2f}")
 
             with st.form("ledger_form", clear_on_submit=True):
@@ -715,11 +808,17 @@ def main() -> None:
                     st.rerun()
 
             st.markdown("#### 거래 내역")
-            st.dataframe(list(reversed(ledger_rows)), use_container_width=True, hide_index=True)
+            render_simple_table(
+                list(reversed(ledger_rows)),
+                column_labels={"date": "거래일", "type": "유형", "amount_eok": "금액(억)", "note": "메모"},
+            )
 
         with enemy_tab:
             st.markdown("#### 적 목록")
-            st.dataframe(enemy_rows, use_container_width=True, hide_index=True)
+            render_simple_table(
+                enemy_rows,
+                column_labels={"name": "이름", "type": "유형", "status": "상태", "note": "설명"},
+            )
 
     with tab_files:
         st.subheader("스토리 파일 업데이트")
