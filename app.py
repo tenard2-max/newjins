@@ -723,7 +723,7 @@ def main() -> None:
 
     with tab_files:
         st.subheader("스토리 파일 업데이트")
-        st.caption("마스터 MD, 스토리 파일(MD), Story Bible ZIP을 업로드하고 활성 파일로 적용할 수 있습니다.")
+        st.caption("마스터 파일, 스토리 파일(MD), 스토리바이블 ZIP을 업로드하고 활성 파일로 적용할 수 있습니다.")
 
         uploaded_master = st.file_uploader("마스터 MD 업로드", type=["md"], key="master_upload")
         if uploaded_master is not None and st.button("마스터 파일 저장 및 적용", key="save_master"):
@@ -733,7 +733,7 @@ def main() -> None:
             st.success(f"마스터 파일 적용 완료: {saved_path.name}")
             st.rerun()
 
-        uploaded_story = st.file_uploader("스토리 파일(MD) 업로드", type=["md"], key="story_upload")
+        uploaded_story = st.file_uploader("스토리 파일 업로드 (MD)", type=["md"], key="story_upload")
         if uploaded_story is not None and st.button("스토리 파일 저장 및 적용", key="save_story"):
             saved_path = save_uploaded_file(uploaded_story, STORY_UPLOAD_DIR)
             config["story_file"] = str(saved_path)
@@ -760,7 +760,7 @@ def main() -> None:
             format_func=lambda x: Path(x).name if x else "선택 없음",
         )
         selected_story = st.selectbox(
-            "활성 스토리 파일",
+            "활성 스토리 파일 (MD)",
             options=story_candidates if story_candidates else [config.get("story_file", "")],
             format_func=lambda x: Path(x).name if x else "선택 없음",
         )
