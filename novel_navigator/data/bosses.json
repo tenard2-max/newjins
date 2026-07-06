@@ -1,0 +1,74 @@
+{
+  "bosses": [
+    {
+      "id": "B1",
+      "name": "미정",
+      "first_ep": "-",
+      "ally_ep": "예정",
+      "status": "LOCK",
+      "description": "인간/아인종 혼합. 최종적으로 동료가 됨. 상세 설정 추후 공개.",
+      "power": "미정",
+      "background": "미정"
+    },
+    {
+      "id": "B2",
+      "name": "미정",
+      "first_ep": "-",
+      "ally_ep": "예정",
+      "status": "LOCK",
+      "description": "인간/아인종 혼합. 최종적으로 동료가 됨. 상세 설정 추후 공개.",
+      "power": "미정",
+      "background": "미정"
+    },
+    {
+      "id": "B3",
+      "name": "미정",
+      "first_ep": "-",
+      "ally_ep": "예정",
+      "status": "LOCK",
+      "description": "인간/아인종 혼합. 최종적으로 동료가 됨. 상세 설정 추후 공개.",
+      "power": "미정",
+      "background": "미정"
+    },
+    {
+      "id": "B4",
+      "name": "미정",
+      "first_ep": "-",
+      "ally_ep": "예정",
+      "status": "LOCK",
+      "description": "인간/아인종 혼합. 최종적으로 동료가 됨. 상세 설정 추후 공개.",
+      "power": "미정",
+      "background": "미정"
+    },
+    {
+      "id": "B5",
+      "name": "미정",
+      "first_ep": "-",
+      "ally_ep": "예정",
+      "status": "LOCK",
+      "description": "인간/아인종 혼합. 최종적으로 동료가 됨. 상세 설정 추후 공개.",
+      "power": "미정",
+      "background": "미정"
+    },
+    {
+      "id": "B6",
+      "name": "미정",
+      "first_ep": "-",
+      "ally_ep": "예정",
+      "status": "LOCK",
+      "description": "인간/아인종 혼합. 최종적으로 동료가 됨. 상세 설정 추후 공개.",
+      "power": "미정",
+      "background": "미정"
+    },
+    {
+      "id": "B7",
+      "name": "민수 (예정)",
+      "first_ep": "EP002",
+      "ally_ep": "미정",
+      "status": "잠재적",
+      "description": "민수는 미래 최강 방패이자 7보스 중 한 명이 될 가능성. 현재는 친구로 등장. 인간/아인종 혼합 설정 예정.",
+      "power": "최강 방패",
+      "background": "대학 친구 → 아인종 혼합 → 동료"
+    }
+  ]
+}

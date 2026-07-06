@@ -1,0 +1,60 @@
+{
+  "relationships": [
+    {
+      "from": "CH001",
+      "to": "CH002",
+      "type": "파트너",
+      "description": "인류를 구하기 위한 핵심 파트너. AI가 전략/투자를 담당하고 주인공이 사람을 변화시킴.",
+      "color": "#e94560",
+      "width": 4
+    },
+    {
+      "from": "CH001",
+      "to": "CH003",
+      "type": "친구",
+      "description": "대학 친구. 미래에는 최강의 방패가 되어 주인공을 지킴.",
+      "color": "#7b2d8b",
+      "width": 2
+    },
+    {
+      "from": "CH001",
+      "to": "CH004",
+      "type": "첫사랑",
+      "description": "반드시 지키고 싶은 평범한 인간. 주인공의 회귀 동기 중 하나.",
+      "color": "#ff6b9d",
+      "width": 3
+    },
+    {
+      "from": "CH001",
+      "to": "CH005",
+      "type": "동료",
+      "description": "후반부 핵심 조력자로 성장할 인물.",
+      "color": "#a8dadc",
+      "width": 2
+    },
+    {
+      "from": "CH001",
+      "to": "CH006",
+      "type": "가족",
+      "description": "아버지. 58.7억 초기 투자금을 지원.",
+      "color": "#2dc653",
+      "width": 2
+    },
+    {
+      "from": "CH004",
+      "to": "CH005",
+      "type": "친구",
+      "description": "지은과 수아는 친한 친구 사이.",
+      "color": "#a8dadc",
+      "width": 1
+    },
+    {
+      "from": "CH002",
+      "to": "CH006",
+      "type": "투자협력",
+      "description": "AI가 아버지의 자금을 운용. 동일패브릭 매매 전담.",
+      "color": "#00b4d8",
+      "width": 2
+    }
+  ]
+}

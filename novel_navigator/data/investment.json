@@ -1,0 +1,64 @@
+{
+  "phases": [
+    {
+      "phase": "Seed",
+      "capital_display": "58.7억",
+      "capital_krw": 5870000000,
+      "goal": "초기 투자 / 동일패브릭 AI 매매",
+      "status": "진행",
+      "progress": 100,
+      "detail": "아버지로부터 확보한 초기 자본. AI가 동일패브릭 매매 전담."
+    },
+    {
+      "phase": "P1",
+      "capital_display": "100억",
+      "capital_krw": 10000000000,
+      "goal": "기반 구축",
+      "status": "예정",
+      "progress": 0,
+      "detail": "시드 성과를 바탕으로 100억 규모로 확장."
+    },
+    {
+      "phase": "P2",
+      "capital_display": "1조",
+      "capital_krw": 1000000000000,
+      "goal": "기업 확보",
+      "status": "예정",
+      "progress": 0,
+      "detail": "전략적 기업 인수 및 확보."
+    },
+    {
+      "phase": "P3",
+      "capital_display": "100조",
+      "capital_krw": 100000000000000,
+      "goal": "전략 자산 확보",
+      "status": "예정",
+      "progress": 0,
+      "detail": "게이트 대비 전략 자산 구축."
+    },
+    {
+      "phase": "Final",
+      "capital_display": "1000조",
+      "capital_krw": 1000000000000000,
+      "goal": "인류 생존 프로젝트",
+      "status": "예정",
+      "progress": 0,
+      "detail": "고위 아인종 침공 대비 인류 생존 인프라 완성."
+    }
+  ],
+  "account": {
+    "initial_krw": 5870000000,
+    "current_krw": 5870000000,
+    "currency": "KRW",
+    "last_updated": "2005-03-08",
+    "history": [
+      {
+        "date": "2005-03-08",
+        "amount_krw": 5870000000,
+        "description": "아버지로부터 초기 투자금 확보 (시드 자본)",
+        "type": "입금",
+        "balance_after": 5870000000
+      }
+    ]
+  }
+}

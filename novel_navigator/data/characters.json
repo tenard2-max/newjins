@@ -1,0 +1,88 @@
+{
+  "characters": [
+    {
+      "id": "CH001",
+      "name": "주인공",
+      "role": "회귀자",
+      "first_ep": "EP001",
+      "future_role": "인류 구원",
+      "alive": true,
+      "boss": false,
+      "boss_level": "",
+      "notes": "100세 이상 회귀",
+      "description": "100세가 넘은 노인이었으나 2005년으로 회귀. 기억 대부분 소실 (초기 치매 수준). 마지막 1초의 공포만 선명하게 남아 있음. 20살 대학생으로 돌아옴.",
+      "color": "#e94560",
+      "emoji": "🧑‍🎓"
+    },
+    {
+      "id": "CH002",
+      "name": "AI 폰",
+      "role": "AI",
+      "first_ep": "EP001",
+      "future_role": "최종보스",
+      "alive": true,
+      "boss": true,
+      "boss_level": "Final",
+      "notes": "노인 케어 AI, 40대 여성 성격",
+      "description": "2080년 최신 자기학습 AI. 오프라인 동작. 노인 케어 AI로 출발했으나 투자 및 전략 담당. 점차 인간성 획득. 최종적으로 인류를 위한 적이 됨. 수십억 번 시뮬레이션으로 회귀를 선택.",
+      "color": "#00b4d8",
+      "emoji": "🤖"
+    },
+    {
+      "id": "CH003",
+      "name": "민수",
+      "role": "친구",
+      "first_ep": "EP002",
+      "future_role": "최강 방패",
+      "alive": true,
+      "boss": true,
+      "boss_level": "예정",
+      "notes": "맵부심",
+      "description": "주인공의 대학 친구. 맵부심이 강하지만 미래에는 최강의 방패가 됨. 인간/아인종 혼합 보스 중 한 명이 될 예정.",
+      "color": "#7b2d8b",
+      "emoji": "🛡️"
+    },
+    {
+      "id": "CH004",
+      "name": "지은",
+      "role": "첫사랑",
+      "first_ep": "EP003",
+      "future_role": "보호 대상",
+      "alive": true,
+      "boss": false,
+      "boss_level": "",
+      "notes": "평범한 인간",
+      "description": "주인공의 첫사랑. 반드시 지키고 싶은 평범한 인간. 주인공이 회귀를 통해 구하고자 하는 존재 중 하나.",
+      "color": "#ff6b9d",
+      "emoji": "💗"
+    },
+    {
+      "id": "CH005",
+      "name": "수아",
+      "role": "친구",
+      "first_ep": "EP004",
+      "future_role": "핵심 조력자",
+      "alive": true,
+      "boss": false,
+      "boss_level": "",
+      "notes": "후반 비중 증가",
+      "description": "지은의 친구. 현재는 조연이지만 후반부에 핵심 조력자로 성장함.",
+      "color": "#a8dadc",
+      "emoji": "⭐"
+    },
+    {
+      "id": "CH006",
+      "name": "아버지",
+      "role": "가족",
+      "first_ep": "EP007",
+      "future_role": "투자 지원",
+      "alive": true,
+      "boss": false,
+      "boss_level": "",
+      "notes": "중견기업 오너",
+      "description": "중견기업 오너. 주인공의 설득으로 58.7억 투자금 운용 권한을 부여함. 인류 생존 프로젝트의 초기 자금원.",
+      "color": "#2dc653",
+      "emoji": "👔"
+    }
+  ]
+}
