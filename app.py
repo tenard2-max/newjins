@@ -20,6 +20,105 @@ STORY_UPLOAD_DIR = UPLOAD_DIR / "story"
 ZIP_UPLOAD_DIR = UPLOAD_DIR / "zip"
 CONFIG_PATH = DATA_DIR / "active_files.json"
 LEDGER_PATH = DATA_DIR / "ledger.json"
+EPISODE_SEED_DIR = SEED_DIR / "episodes"
+EPISODE_UPLOAD_DIR = UPLOAD_DIR / "episodes"
+READING_PROGRESS_PATH = DATA_DIR / "reading_progress.json"
+EPISODE_COUNT = 100
+
+EPISODE_TITLES: dict[int, str] = {
+    1: "마지막 1초 · 회귀 · AI폰 재기동",
+    2: "대학 친구들과 재회 · 미래 보스의 단서",
+    3: "지은과 재회 · 잃어버린 청춘의 감정",
+    4: "AI와 일상 시작 · 첫 이상 징후",
+    5: "민수의 맵부심 · AI의 유머와 인간성",
+    6: "AI가 투자 계획 제시 · 인류 생존 프로젝트 시작",
+    7: "아버지에게 투자금 확보 · 첫 자본 마련",
+}
+
+DEFAULT_EPISODE_BODIES: dict[int, str] = {
+    1: """2080년, 인류는 멸망 직전 마지막 1초를 맞는다.
+
+100세가 넘은 주인공은 폐허가 된 도시에서 숨을 멈추기 직전, 손에 쥔 AI 스마트폰과 함께 죽음의 문턱에 선다.
+AI는 수십억 번의 시뮬레이션 끝에 회귀 성공 확률 97%를 선택하고, 주인공 한 명만 2005년으로 되돌린다.
+
+눈을 뜬 주인공은 20살 대학생의 몸이었다. 기억은 대부분 사라졌고, 마지막 1초의 공포만 선명하게 남아 있었다.
+주머니 속 AI 폰은 다시 켜지며, 차분한 여성 목소리로 말한다.
+
+"다시 시작합시다. 이번에는 인류를 살릴 수 있습니다."
+""",
+    2: """2005년 봄, 캠퍼스는 평범했다. 주인공에게 평범함은 오히려 낯설었다.
+
+강의실 복도에서 민수를 다시 만났다. 말은 거칠지만, 누군가를 지키려는 본능이 숨어 있는 친구였다.
+AI 폰은 조용히 기록한다. '미래 최강 방패, 현재는 맵부심 단계.'
+
+수업 후, AI는 화면에 짧은 경고를 띄운다.
+"오늘 만난 인물 중, 미래 보스 후보가 포함되어 있습니다."
+
+주인공은 웃음을 참으며 속으로 되뇌었다.
+이번 생에서는 적이 아니라 동료로 만들겠다고.
+""",
+    3: """도서관 3층 창가 자리. 지은은 책을 읽고 있었다.
+
+주인공은 그녀를 본 순간, 잊었다고 믿었던 감정의 파편이 되살아나는 것을 느꼈다.
+지은은 평범했다. 그 평범함이야말로 2080년의 멸망 속에서 지켜야 할 이유였다.
+
+"오래간만이야." 짧은 인사 한마디에 목소리가 떨렸다.
+지은은 부드럽게 웃었다. "너 요즘 뭔가 달라졌어."
+
+AI 폰은 낮게 말했다.
+"보호 대상 확인. 감정 개입 위험도: 중."
+""",
+    4: """AI 폰은 투자뿐 아니라 일상 전체에 개입하기 시작했다.
+
+아침 알람, 강의 일정, 식단, 걸음 수, 심지어 대화 톤까지.
+주인공은 불편함과 안도감 사이에서 하루를 보냈다.
+
+그날 밤, AI가 갑자기 위성 궤적 데이터를 보여준다.
+"비정상 패턴 감지. 게이트 전조 가능성."
+
+주인공은 창밖의 2005년 하늘을 바라보았다.
+모든 것이 평화로워 보였지만, 그 평화는 거짓일 수 있었다.
+""",
+    5: """민수가 또 말다툼에 휘말렸다. 이번에는 정말 큰일 날 뻔했다.
+
+주인공이 말리자 민수는 투덜거리면서도 결국 고개를 숙였다.
+"야, 너 요즘 왜 이렇게 달라졌냐. 뭐 비밀 있냐?"
+
+AI 폰은 그때 유머 모드를 켰다.
+"비밀은 있습니다. 다만 지금 공개하면 스포일러입니다."
+
+민수는 얼빠진 표정으로 폰을 바라봤고, 주인공은 오랜만에 크게 웃었다.
+웃음 뒤에 남은 것은 작은 확신이었다. 인간은 이렇게 살아갈 가치가 있다는 것.
+""",
+    6: """AI는 투자 계획서를 화면 가득 펼쳤다.
+
+초기 목표, 1차 자산, 장기 전략, 인력 배치, 게이트 대비 타임라인.
+모든 항목 끝에는 같은 문장이 붙어 있었다.
+
+'인류 생존 프로젝트.'
+
+주인공은 숫자의 파도 앞에서 잠시 숨을 고른 뒤 물었다.
+"내가 해야 할 일은?"
+
+AI가 답했다.
+"사람을 바꾸세요. 자본은 제가 맡겠습니다."
+""",
+    7: """아버지의 서재는 언제나 정돈되어 있었다.
+
+주인공은 떨리는 손으로 계획서를 내밀었다.
+아버지는 오래 읽다가 고개를 끄덕였다.
+
+"58.7억. 실패하면 끝이야."
+
+"실패 안 합니다."
+
+아버지는 잠시 주인공을 바라보다가 말했다.
+"너, 예전의 네가 아니구나."
+
+그날 저녁, 첫 자본이 확보되었다.
+인류 생존 프로젝트의 엔진이 드디어 켜진 순간이었다.
+""",
+}
 
 
 DEFAULT_MASTER_MD = """# 99_Master_DB
@@ -221,8 +320,162 @@ DEFAULT_BOSSES_MD = """# 7보스
 """
 
 
+def episode_code(episode_num: int) -> str:
+    return f"EP{episode_num:03d}"
+
+
+def episode_filename(episode_num: int) -> str:
+    return f"{episode_code(episode_num)}.md"
+
+
+def get_episode_title(episode_num: int) -> str:
+    return EPISODE_TITLES.get(episode_num, f"제{episode_num:03d}화")
+
+
+def build_default_episode_markdown(episode_num: int) -> str:
+    title = get_episode_title(episode_num)
+    body = DEFAULT_EPISODE_BODIES.get(
+        episode_num,
+        (
+            f"이 화의 본문이 아직 등록되지 않았습니다.\n\n"
+            f"파일 업데이트 탭에서 `{episode_filename(episode_num)}` 내용을 저장하거나, "
+            f"`data/uploads/episodes/` 경로에 파일을 추가해 주세요."
+        ),
+    )
+    return f"# {episode_code(episode_num)} · {title}\n\n{body.strip()}\n"
+
+
+def resolve_episode_path(episode_num: int) -> Path:
+    upload_path = EPISODE_UPLOAD_DIR / episode_filename(episode_num)
+    if upload_path.exists():
+        return upload_path
+    seed_path = EPISODE_SEED_DIR / episode_filename(episode_num)
+    if seed_path.exists():
+        return seed_path
+    return seed_path
+
+
+def load_episode_markdown(episode_num: int) -> str:
+    path = resolve_episode_path(episode_num)
+    if path.exists():
+        content = read_text(str(path)).strip()
+        if content:
+            return content
+    return build_default_episode_markdown(episode_num)
+
+
+def build_episode_catalog(master_episodes: list[dict[str, str]]) -> list[dict[str, Any]]:
+    status_map = {row["episode"].upper(): row["status"] for row in master_episodes}
+    catalog: list[dict[str, Any]] = []
+    for episode_num in range(1, EPISODE_COUNT + 1):
+        code = episode_code(episode_num)
+        upload_exists = (EPISODE_UPLOAD_DIR / episode_filename(episode_num)).exists()
+        seed_exists = (EPISODE_SEED_DIR / episode_filename(episode_num)).exists()
+        has_body = upload_exists or seed_exists or episode_num in DEFAULT_EPISODE_BODIES
+        catalog.append(
+            {
+                "num": episode_num,
+                "code": code,
+                "title": get_episode_title(episode_num),
+                "status": status_map.get(code, "완료" if episode_num <= 7 else "예정"),
+                "readable": has_body,
+            }
+        )
+    return catalog
+
+
+def load_reading_progress() -> int:
+    if not READING_PROGRESS_PATH.exists():
+        return 1
+    try:
+        data = json.loads(READING_PROGRESS_PATH.read_text(encoding="utf-8"))
+        value = int(data.get("last_episode", 1))
+        return max(1, min(EPISODE_COUNT, value))
+    except (json.JSONDecodeError, TypeError, ValueError):
+        return 1
+
+
+def save_reading_progress(episode_num: int) -> None:
+    payload = {"last_episode": max(1, min(EPISODE_COUNT, episode_num))}
+    READING_PROGRESS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def render_episode_reader_tab(catalog: list[dict[str, Any]]) -> None:
+    st.subheader("소설 읽기 (1~100화)")
+    st.caption("화수를 선택해 본문을 읽을 수 있습니다. 이전/다음 화 이동도 지원합니다.")
+
+    if "reader_episode" not in st.session_state:
+        st.session_state.reader_episode = load_reading_progress()
+
+    selected = st.select_slider(
+        "화수 선택",
+        options=list(range(1, EPISODE_COUNT + 1)),
+        value=st.session_state.reader_episode,
+        format_func=lambda n: f"{n}화 · {get_episode_title(n)}",
+        key="reader_episode_slider",
+    )
+    st.session_state.reader_episode = selected
+    save_reading_progress(selected)
+
+    jump_col1, jump_col2 = st.columns([3, 1])
+    with jump_col1:
+        jump_target = st.number_input(
+            "화수 바로 이동",
+            min_value=1,
+            max_value=EPISODE_COUNT,
+            value=selected,
+            step=1,
+            key="reader_jump_input",
+        )
+    with jump_col2:
+        st.write("")
+        st.write("")
+        if st.button("이동", use_container_width=True, key="reader_jump_button"):
+            st.session_state.reader_episode = int(jump_target)
+            save_reading_progress(int(jump_target))
+            st.rerun()
+
+    nav_prev, nav_info, nav_next = st.columns([1, 2, 1])
+    with nav_prev:
+        if st.button("◀ 이전 화", disabled=selected <= 1, use_container_width=True, key="reader_prev"):
+            st.session_state.reader_episode = max(1, selected - 1)
+            save_reading_progress(st.session_state.reader_episode)
+            st.rerun()
+    with nav_info:
+        current = next(item for item in catalog if item["num"] == selected)
+        st.markdown(
+            f"<div class='reader-meta'><strong>{current['code']}</strong> · {escape(current['title'])} "
+            f"<span style='color:#94a3b8'>({escape(current['status'])})</span></div>",
+            unsafe_allow_html=True,
+        )
+    with nav_next:
+        if st.button("다음 화 ▶", disabled=selected >= EPISODE_COUNT, use_container_width=True, key="reader_next"):
+            st.session_state.reader_episode = min(EPISODE_COUNT, selected + 1)
+            save_reading_progress(st.session_state.reader_episode)
+            st.rerun()
+
+    st.markdown("---")
+    st.markdown(load_episode_markdown(selected))
+
+    with st.expander("1~100화 목록"):
+        list_rows = [
+            {"화": item["num"], "코드": item["code"], "제목": item["title"], "상태": item["status"]}
+            for item in catalog
+        ]
+        render_simple_table(list_rows, column_order=["화", "코드", "제목", "상태"])
+
+
 def ensure_storage() -> None:
-    for path in [DATA_DIR, SEED_DIR, UPLOAD_DIR, MASTER_UPLOAD_DIR, STORY_UPLOAD_DIR, ZIP_UPLOAD_DIR]:
+    for path in [
+        DATA_DIR,
+        SEED_DIR,
+        UPLOAD_DIR,
+        MASTER_UPLOAD_DIR,
+        STORY_UPLOAD_DIR,
+        ZIP_UPLOAD_DIR,
+        EPISODE_SEED_DIR,
+        EPISODE_UPLOAD_DIR,
+    ]:
         path.mkdir(parents=True, exist_ok=True)
 
     seed_files = {
@@ -241,6 +494,12 @@ def ensure_storage() -> None:
         file_path = SEED_DIR / filename
         if not file_path.exists():
             file_path.write_text(content, encoding="utf-8")
+
+    for episode_num in range(1, 8):
+        seed_episode_path = EPISODE_SEED_DIR / episode_filename(episode_num)
+        if seed_episode_path.exists():
+            continue
+        seed_episode_path.write_text(build_default_episode_markdown(episode_num), encoding="utf-8")
 
     if not CONFIG_PATH.exists():
         config = {
@@ -599,6 +858,15 @@ def render_mobile_css() -> None:
             height: auto;
             display: block;
         }
+        .reader-meta {
+            text-align: center;
+            color: #cbd5e1;
+            padding-top: 0.45rem;
+        }
+        div[data-testid="stMarkdownContainer"] p {
+            line-height: 1.85;
+            font-size: 1.02rem;
+        }
         @media (max-width: 768px) {
             .block-container {
                 padding-left: 0.8rem;
@@ -774,6 +1042,7 @@ def main() -> None:
         master_data["bosses"],
     )
     enemy_rows = build_enemy_list(master_data["bosses"], gate_points)
+    episode_catalog = build_episode_catalog(master_data["episodes"])
 
     ledger_rows = load_ledger(initial_balance_eok)
     current_balance = calculate_balance_eok(ledger_rows)
@@ -791,8 +1060,8 @@ def main() -> None:
         if st.button("데이터 새로고침", use_container_width=True):
             st.rerun()
 
-    tab_overview, tab_character, tab_relation, tab_ops, tab_files = st.tabs(
-        ["개요", "인물 네비게이터", "인물 관계도", "이슈/투자/적", "파일 업데이트"]
+    tab_overview, tab_reader, tab_character, tab_relation, tab_ops, tab_files = st.tabs(
+        ["개요", "소설 읽기", "인물 네비게이터", "인물 관계도", "이슈/투자/적", "파일 업데이트"]
     )
 
     with tab_overview:
@@ -807,6 +1076,9 @@ def main() -> None:
         render_simple_table(master_data["episodes"], column_labels={"episode": "에피소드", "status": "상태"})
         st.markdown("#### 에피소드 요약")
         render_simple_table(story_data["timeline"], column_labels={"episode": "에피소드", "summary": "요약"})
+
+    with tab_reader:
+        render_episode_reader_tab(episode_catalog)
 
     with tab_character:
         st.subheader("인물 선택")
@@ -956,6 +1228,28 @@ def main() -> None:
             config["story_file"] = str(target)
             save_active_config(config)
             st.success(f"스토리 본문 저장 완료: {target.name}")
+            st.rerun()
+
+        st.markdown("#### 화별 소설 본문 저장 (1~100화)")
+        episode_save_num = st.number_input(
+            "저장할 화수",
+            min_value=1,
+            max_value=EPISODE_COUNT,
+            value=st.session_state.get("reader_episode", 1),
+            step=1,
+            key="episode_save_num",
+        )
+        episode_default_text = load_episode_markdown(int(episode_save_num))
+        episode_text = st.text_area(
+            f"{episode_code(int(episode_save_num))} 본문 (MD)",
+            value=episode_default_text,
+            height=260,
+            key="episode_text_editor",
+        )
+        if st.button("선택 화 본문 저장", key="save_episode_text"):
+            target = EPISODE_UPLOAD_DIR / episode_filename(int(episode_save_num))
+            target.write_text(episode_text, encoding="utf-8")
+            st.success(f"{episode_code(int(episode_save_num))} 저장 완료")
             st.rerun()
 
         st.markdown("#### 스토리바이블 ZIP 경로/링크 저장")

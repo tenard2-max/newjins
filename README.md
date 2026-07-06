@@ -5,6 +5,7 @@
 ## 제공 기능
 
 - 인물 선택 네비게이터
+- **소설 1~100화 선택 읽기** (이전/다음 화, 이어보기 저장)
 - 인물 관계도(모바일 안전 SVG + 관계 표)
 - 중요 이슈 / 투자 로드맵 / 통장잔고 / 적 리스트
 - 마스터 MD / 스토리 MD / Story Bible ZIP 활성 파일 전환
@@ -53,6 +54,9 @@ pip install -r requirements.txt
 - 업로드 문서: `data/uploads/`
 - 활성 파일 설정: `data/active_files.json`
 - 통장 거래 내역: `data/ledger.json`
+- 화별 본문(시드): `data/seed/episodes/EP001.md` ~ `EP100.md`
+- 화별 본문(업로드): `data/uploads/episodes/`
+- 마지막 읽은 화: `data/reading_progress.json`
 
 > 주의: 대부분의 클라우드 런타임은 파일시스템이 영구 저장소가 아닙니다.  
 > 런타임 재시작 시 업로드 파일이 유실될 수 있으므로, 중요한 파일은 GitHub 또는 외부 스토리지에 별도 백업하세요.
