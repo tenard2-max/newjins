@@ -1,0 +1,16 @@
+{
+  "name": "웹소설 네비게이터 · Story Bible",
+  "short_name": "StoryBible",
+  "description": "Story Bible Project Constitution v1.0 기반의 웹소설 스토리 바이블 · 인물 · 관계 · 떡밥 · 투자 · 보스 관리 앱",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "lang": "ko",
+  "icons": [
+    { "src": "./assets/icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "./assets/icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
