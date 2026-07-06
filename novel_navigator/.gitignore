@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+
+# 런타임 산출물 (원본은 보존, 백업/내보내기 결과물은 제외)
+data/exports/*.zip
+data/backups/*
+!data/backups/.gitkeep
+!data/exports/.gitkeep
+!data/uploads/.gitkeep
