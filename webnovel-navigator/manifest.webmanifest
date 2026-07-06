@@ -1,0 +1,20 @@
+{
+  "name": "웹소설 네비게이터",
+  "short_name": "스토리 네비",
+  "description": "회귀 웹소설 스토리바이블 관리 앱 — 인물/관계도/투자/통장/적/이슈 관리 및 스토리바이블.zip 내보내기",
+  "lang": "ko",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

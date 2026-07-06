@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#1c2a52"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- ¤Ä Á (ŒÀ/Ü¬tX ÁÕ) -->
+  <ellipse cx="256" cy="256" rx="150" ry="150" fill="none" stroke="url(#accent)" stroke-width="10" stroke-opacity="0.35"/>
+  <ellipse cx="256" cy="256" rx="150" ry="70" fill="none" stroke="url(#accent)" stroke-width="6" stroke-opacity="0.5"/>
+  <!-- $DŒtX ˜h -->
+  <polygon points="256,150 300,300 256,268 212,300" fill="url(#accent)"/>
+  <circle cx="256" cy="256" r="18" fill="#0b1020" stroke="url(#accent)" stroke-width="8"/>
+  <!-- 97% ¤Ä  -->
+  <circle cx="406" cy="256" r="16" fill="#38bdf8"/>
+  <circle cx="106" cy="256" r="12" fill="#f472b6"/>
+</svg>

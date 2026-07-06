@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="스토리 네비게이터">
+  <title>웹소설 네비게이터</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 상단 앱바 -->
+  <header class="appbar">
+    <div class="appbar-title">
+      <span class="appbar-dot"></span>
+      <div>
+        <strong id="app-title">웹소설 네비게이터</strong>
+        <small id="app-subtitle">Story Bible · v1.0</small>
+      </div>
+    </div>
+    <button class="icon-btn" id="btn-save-state" title="저장">💾</button>
+  </header>
+
+  <!-- 메인 뷰 컨테이너 -->
+  <main id="view" class="view"></main>
+
+  <!-- 하단 탭 네비게이션 (모바일 앱 스타일) -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tab" data-view="dashboard"><span>🏠</span><em>홈</em></button>
+    <button class="tab" data-view="characters"><span>👥</span><em>인물</em></button>
+    <button class="tab" data-view="relations"><span>🕸️</span><em>관계도</em></button>
+    <button class="tab" data-view="finance"><span>💰</span><em>투자</em></button>
+    <button class="tab" data-view="enemies"><span>⚔️</span><em>적</em></button>
+    <button class="tab" data-view="issues"><span>🧩</span><em>이슈</em></button>
+    <button class="tab" data-view="edit"><span>✏️</span><em>편집</em></button>
+  </nav>
+
+  <!-- 토스트 -->
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="data.js"></script>
+  <script src="zip.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
