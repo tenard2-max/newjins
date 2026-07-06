@@ -583,6 +583,21 @@ def render_mobile_css() -> None:
             background: rgba(30, 41, 59, 0.8);
             font-weight: 600;
         }
+        .relation-graph-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.85);
+            padding: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .relation-graph-svg {
+            width: 100%;
+            min-width: 760px;
+            height: auto;
+            display: block;
+        }
         @media (max-width: 768px) {
             .block-container {
                 padding-left: 0.8rem;
@@ -650,6 +665,69 @@ def render_relation_graph() -> None:
         {"인물 A": "AI 폰", "인물 B": "7보스", "관계": "미래 충돌 축"},
         {"인물 A": "7보스", "인물 B": "게이트 세력", "관계": "침공 연계"},
     ]
+
+    graph_svg = """
+    <div class="relation-graph-wrap">
+      <svg class="relation-graph-svg" viewBox="0 0 940 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"></path>
+          </marker>
+          <style>
+            .node { fill: #0f172a; stroke: #6366f1; stroke-width: 2; rx: 14; ry: 14; }
+            .nodeText { fill: #e5e7eb; font-size: 18px; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; font-weight: 700; }
+            .edge { stroke: #94a3b8; stroke-width: 2.3; marker-end: url(#arrowHead); }
+            .edgeLabel { fill: #cbd5e1; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; }
+          </style>
+        </defs>
+
+        <!-- edges -->
+        <line class="edge" x1="200" y1="140" x2="420" y2="80" />
+        <line class="edge" x1="200" y1="140" x2="420" y2="200" />
+        <line class="edge" x1="200" y1="140" x2="420" y2="320" />
+        <line class="edge" x1="520" y1="320" x2="700" y2="320" />
+        <line class="edge" x1="200" y1="140" x2="420" y2="440" />
+        <line class="edge" x1="520" y1="80" x2="700" y2="80" />
+        <line class="edge" x1="800" y1="80" x2="800" y2="200" />
+
+        <!-- edge labels -->
+        <text class="edgeLabel" x="250" y="90">전략 동맹 / 미래 대립</text>
+        <text class="edgeLabel" x="260" y="185">친구 / 전투 협력</text>
+        <text class="edgeLabel" x="245" y="285">첫사랑 / 보호 대상</text>
+        <text class="edgeLabel" x="560" y="304">친구 / 후반 조력 축</text>
+        <text class="edgeLabel" x="255" y="390">가족 / 투자 지원</text>
+        <text class="edgeLabel" x="560" y="63">미래 충돌 축</text>
+        <text class="edgeLabel" x="815" y="145">침공 연계</text>
+
+        <!-- nodes -->
+        <rect class="node" x="80" y="110" width="120" height="58"></rect>
+        <text class="nodeText" x="140" y="146" text-anchor="middle">주인공</text>
+
+        <rect class="node" x="420" y="50" width="100" height="58"></rect>
+        <text class="nodeText" x="470" y="86" text-anchor="middle">AI 폰</text>
+
+        <rect class="node" x="420" y="170" width="100" height="58"></rect>
+        <text class="nodeText" x="470" y="206" text-anchor="middle">민수</text>
+
+        <rect class="node" x="420" y="290" width="100" height="58"></rect>
+        <text class="nodeText" x="470" y="326" text-anchor="middle">지은</text>
+
+        <rect class="node" x="700" y="290" width="100" height="58"></rect>
+        <text class="nodeText" x="750" y="326" text-anchor="middle">수아</text>
+
+        <rect class="node" x="420" y="410" width="120" height="58"></rect>
+        <text class="nodeText" x="480" y="446" text-anchor="middle">아버지</text>
+
+        <rect class="node" x="700" y="50" width="100" height="58"></rect>
+        <text class="nodeText" x="750" y="86" text-anchor="middle">7보스</text>
+
+        <rect class="node" x="730" y="200" width="140" height="58"></rect>
+        <text class="nodeText" x="800" y="236" text-anchor="middle">게이트 세력</text>
+      </svg>
+    </div>
+    """
+    st.markdown(graph_svg, unsafe_allow_html=True)
+    st.caption("그래프가 보이지 않으면 좌우 스크롤해서 전체 지도를 확인하세요.")
     render_simple_table(relation_rows)
 
 
