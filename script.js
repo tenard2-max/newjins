@@ -872,7 +872,45 @@ function mergeMasterMarkdown(markdown) {
   if (originalTimeline) appState.project.originalTimeline = originalTimeline;
   if (storyStatus) appState.project.storyStatus = storyStatus;
 
-  const investments = parsePipeTable(markdown, "Investment DB").map(row => ({
+  const characterRows = parsePipeTable(markdown, "Character DB").length
+    ? parsePipeTable(markdown, "Character DB")
+    : parseFixedTable(markdown, "Character DB", /^CH\d+/).map(cells => ({
+        ID: cells[0],
+        Name: cells[1],
+        Role: cells[2],
+        "First EP": cells[3],
+        "Future Role": cells[4],
+        Alive: cells[5],
+        Boss: cells[6],
+        Notes: cells.slice(7).join(" ")
+      }));
+  const characters = characterRows.map(row => {
+    const existing = appState.characters.find(character => character.id === row.ID);
+    return {
+      ...(existing || {}),
+      id: row.ID,
+      name: row.Name,
+      role: row.Role,
+      firstEp: row["First EP"],
+      futureRole: row["Future Role"],
+      alive: row.Alive !== "N",
+      boss: row.Boss,
+      notes: row.Notes || existing?.notes || "",
+      summary: existing?.summary || `${row.Name} 설정이 마스터 DB에서 업데이트되었습니다.`,
+      connections: existing?.connections || []
+    };
+  });
+  if (characters.length) appState.characters = characters;
+
+  const investmentRows = parsePipeTable(markdown, "Investment DB").length
+    ? parsePipeTable(markdown, "Investment DB")
+    : parseFixedTable(markdown, "Investment DB", /^(Seed|P\d|Final)\b/).map(cells => ({
+        Phase: cells[0],
+        Capital: cells[1],
+        Goal: cells[2],
+        Status: cells.slice(3).join(" ")
+      }));
+  const investments = investmentRows.map(row => ({
     phase: row.Phase,
     capital: row.Capital,
     goal: row.Goal,
@@ -884,7 +922,16 @@ function mergeMasterMarkdown(markdown) {
     if (seed?.capital) appState.balance.amount = seed.capital;
   }
 
-  const foreshadows = parsePipeTable(markdown, "Foreshadow DB").map(row => ({
+  const foreshadowRows = parsePipeTable(markdown, "Foreshadow DB").length
+    ? parsePipeTable(markdown, "Foreshadow DB")
+    : parseFixedTable(markdown, "Foreshadow DB", /^F\d+/).map(cells => ({
+        ID: cells[0],
+        EP: cells[1],
+        Foreshadow: cells[2],
+        "Planned Payoff": cells[3],
+        Status: cells.slice(4).join(" ")
+      }));
+  const foreshadows = foreshadowRows.map(row => ({
     id: row.ID,
     ep: row.EP,
     title: row.Foreshadow,
@@ -893,7 +940,16 @@ function mergeMasterMarkdown(markdown) {
   }));
   if (foreshadows.length) appState.foreshadows = foreshadows;
 
-  const bosses = parsePipeTable(markdown, "Boss Progress").map(row => ({
+  const bossRows = parsePipeTable(markdown, "Boss Progress").length
+    ? parsePipeTable(markdown, "Boss Progress")
+    : parseFixedTable(markdown, "Boss Progress", /^B\d+/).map(cells => ({
+        Boss: cells[0],
+        Name: cells[1],
+        "First EP": cells[2],
+        Ally: cells[3],
+        Status: cells.slice(4).join(" ")
+      }));
+  const bosses = bossRows.map(row => ({
     id: row.Boss,
     name: row.Name,
     firstEp: row["First EP"],
@@ -911,9 +967,18 @@ function mergeMasterMarkdown(markdown) {
 }
 
 function extractSection(markdown, heading) {
-  const pattern = new RegExp(`^#{1,3}\\s+${escapeRegExp(heading)}\\s*$([\\s\\S]*?)(?=^#{1,3}\\s+|^---+$|\\Z)`, "im");
-  const match = markdown.match(pattern);
-  return match ? match[1].trim() : "";
+  const lines = markdown.split(/\r?\n/);
+  const headingPattern = new RegExp(`^#{1,3}\\s+${escapeRegExp(heading)}\\s*$`, "i");
+  const startIndex = lines.findIndex(line => headingPattern.test(line.trim()));
+  if (startIndex === -1) return "";
+
+  const collected = [];
+  for (let index = startIndex + 1; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    if (/^#{1,3}\s+/.test(line)) break;
+    collected.push(lines[index]);
+  }
+  return collected.join("\n").trim();
 }
 
 function parseTimeline(markdown) {
@@ -962,6 +1027,20 @@ function splitPipeRow(line) {
     .replace(/\|$/, "")
     .split("|")
     .map(cell => cell.trim());
+}
+
+function parseFixedTable(markdown, heading, rowPattern) {
+  return extractSection(markdown, heading)
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => rowPattern.test(line))
+    .map(line =>
+      line
+        .replaceAll("\\-", "-")
+        .split(/\s{2,}/)
+        .map(cell => cell.trim())
+        .filter(Boolean)
+    );
 }
 
 function matchValue(text, pattern) {
